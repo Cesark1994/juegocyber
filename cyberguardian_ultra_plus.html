@@ -14,6 +14,7 @@
    ========================================================= */
 :root{
   --bg:#07101e;
+  --bg2:#0a1730;
   --panel:#0e1a38;
   --panel2:#0a1430;
   --line:#1d4ed8;
@@ -30,16 +31,18 @@
   --gold:#ffb703;
   --text:#f7fbff;
   --muted:#b8c5e4;
-  --shadow:0 24px 60px rgba(0,0,0,.35);
+  --panelGlow:0 20px 46px rgba(3,10,28,.28);
+  --shadow:0 26px 64px rgba(0,0,0,.36);
   --radius:22px;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
 body{
   background:
-    linear-gradient(145deg, rgba(26,216,255,.07), transparent 24%),
-    linear-gradient(35deg, rgba(139,92,246,.08), transparent 28%),
-    linear-gradient(180deg,#050a17 0%,#07101e 45%,#09142b 100%);
+    radial-gradient(circle at 12% 8%, rgba(26,216,255,.12), transparent 20%),
+    radial-gradient(circle at 88% 14%, rgba(255,208,39,.08), transparent 18%),
+    radial-gradient(circle at 50% 78%, rgba(139,92,246,.1), transparent 22%),
+    linear-gradient(180deg,#040915 0%,#07101e 42%,#0a1730 100%);
 }
 body::before{
   content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;
@@ -61,11 +64,12 @@ button{font:inherit;border:0;cursor:pointer}
 .panel{
   position:relative;overflow:hidden;
   background:
+    radial-gradient(circle at 12% 10%, rgba(61,212,255,.12), transparent 22%),
     linear-gradient(180deg, rgba(18,32,74,.98), rgba(7,16,38,.97)),
-    linear-gradient(135deg, rgba(255,255,255,.05), transparent 45%);
-  border:1px solid rgba(89,147,255,.3);
-  border-radius:26px;
-  box-shadow:var(--shadow), inset 0 0 0 1px rgba(80,165,255,.1);
+    linear-gradient(135deg, rgba(255,255,255,.06), transparent 45%);
+  border:1px solid rgba(89,147,255,.26);
+  border-radius:28px;
+  box-shadow:var(--shadow), inset 0 0 0 1px rgba(80,165,255,.08);
   backdrop-filter:blur(18px);
 }
 .panel::before{
@@ -77,9 +81,9 @@ button{font:inherit;border:0;cursor:pointer}
   transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease
 }
 .routeTile:hover,.quickStat:hover,.simpleActionCard:hover,.mobileMissionCard:hover,.missionCard:hover,.federalMissionCard:hover,.materialCard:hover,.resourceItem:hover,.navTile:hover,.sideCard:hover,.ultraMenu button:hover,.profileBox:hover,.smallStat:hover,.iconBox:hover{
-  transform:translateY(-2px);
+  transform:translateY(-3px) scale(1.01);
   border-color:rgba(116,205,255,.34);
-  box-shadow:0 24px 48px rgba(0,0,0,.32), inset 0 0 0 1px rgba(255,255,255,.08)
+  box-shadow:0 26px 52px rgba(0,0,0,.32), inset 0 0 0 1px rgba(255,255,255,.08)
 }
 .topbar{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.92fr) minmax(110px,.58fr) minmax(110px,.48fr);gap:14px;align-items:stretch}
 .brandBox,.profileBox,.smallStat,.iconBox{padding:14px 18px;display:flex;align-items:center;gap:16px}
@@ -192,9 +196,46 @@ button{font:inherit;border:0;cursor:pointer}
 .sceneCard.green{background:linear-gradient(180deg, rgba(34,197,94,.16), rgba(255,255,255,.04))}
 .sceneCard.gold{background:linear-gradient(180deg, rgba(255,208,39,.16), rgba(255,255,255,.04))}
 .routeChooser{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.homeUtilityPanel{
+  padding:22px;display:grid;grid-template-columns:1.08fr .92fr;gap:16px;align-items:center;
+  background:
+    radial-gradient(circle at 12% 14%, rgba(61,212,255,.14), transparent 24%),
+    radial-gradient(circle at 88% 18%, rgba(255,208,39,.1), transparent 22%),
+    linear-gradient(180deg, rgba(16,33,76,.98), rgba(8,17,42,.98))
+}
+.shareCardMain{display:grid;gap:12px}
+.shareCardMain h3{margin:0;font-size:1.8rem;line-height:1.06}
+.shareCardMain p{margin:0;color:#d7e7ff;line-height:1.46}
+.shareHint{
+  padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.06);
+  border:1px solid rgba(116,205,255,.18);color:#dbeaff;line-height:1.4
+}
+.sharePanelGrid{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
+.shareUrlInput{
+  width:100%;padding:14px 16px;border-radius:18px;border:2px solid rgba(116,205,255,.18);
+  background:#081327;color:#fff;font:inherit;outline:none
+}
+.qrCard{
+  padding:18px;border-radius:24px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(116,205,255,.18);display:grid;gap:12px;justify-items:center;box-shadow:var(--panelGlow)
+}
+.qrCard b{font-size:1.08rem}
+.qrFrame{
+  width:min(100%,240px);aspect-ratio:1/1;border-radius:22px;background:#fff;display:grid;place-items:center;
+  padding:12px;border:8px solid rgba(255,255,255,.08);box-shadow:0 16px 30px rgba(0,0,0,.18)
+}
+.qrFrame img{width:100%;height:100%;object-fit:contain;border-radius:14px}
+.qrPlaceholder{
+  width:100%;height:100%;border-radius:14px;background:
+    linear-gradient(90deg, rgba(10,18,39,.12) 12%, transparent 12% 20%, rgba(10,18,39,.12) 20% 28%, transparent 28% 36%, rgba(10,18,39,.12) 36% 44%, transparent 44%),
+    linear-gradient(rgba(10,18,39,.12) 12%, transparent 12% 20%, rgba(10,18,39,.12) 20% 28%, transparent 28% 36%, rgba(10,18,39,.12) 36% 44%, transparent 44%),
+    linear-gradient(180deg,#f7fbff,#eef4ff);
+  display:grid;place-items:center;text-align:center;color:#173d94;font-weight:1000;padding:18px
+}
+.shareActionRow{display:flex;gap:10px;flex-wrap:wrap}
 .routeTile{
-  position:relative;padding:22px;border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.06));
-  border:1px solid rgba(116,205,255,.18);display:grid;gap:14px;align-content:start;min-height:208px
+  position:relative;padding:24px;border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.06));
+  border:1px solid rgba(116,205,255,.2);display:grid;gap:14px;align-content:start;min-height:208px;box-shadow:var(--panelGlow)
 }
 .routeTile::after{
   content:"";position:absolute;right:-18px;bottom:-24px;width:138px;height:138px;
@@ -232,10 +273,10 @@ button{font:inherit;border:0;cursor:pointer}
 .quickStat{
   padding:18px;border-radius:24px;
   background:
-    radial-gradient(circle at 12% 18%, rgba(255,255,255,.12), transparent 22%),
+    radial-gradient(circle at 12% 18%, rgba(61,212,255,.18), transparent 22%),
     linear-gradient(180deg, rgba(22,37,78,.96), rgba(10,20,46,.98));
   border:1px solid rgba(116,205,255,.22);display:grid;gap:10px;
-  justify-items:start;min-height:132px
+  justify-items:start;min-height:132px;box-shadow:var(--panelGlow)
 }
 .quickStat b{font-size:2rem;color:#fff;line-height:1}
 .quickStat span{color:#d8e8ff;line-height:1.35;font-weight:800;font-size:1rem}
@@ -247,10 +288,10 @@ button{font:inherit;border:0;cursor:pointer}
 .simpleActionCard{
   padding:20px;border-radius:24px;
   background:
-    radial-gradient(circle at 14% 16%, rgba(255,255,255,.1), transparent 22%),
+    radial-gradient(circle at 14% 16%, rgba(61,212,255,.16), transparent 22%),
     linear-gradient(180deg, rgba(22,37,78,.98), rgba(10,20,46,.98));
   border:1px solid rgba(116,205,255,.22);display:grid;gap:12px;align-content:start;
-  min-height:220px
+  min-height:220px;box-shadow:var(--panelGlow)
 }
 .actionIcon{
   width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:1.55rem;
@@ -311,15 +352,18 @@ button{font:inherit;border:0;cursor:pointer}
   border:1px solid rgba(116,205,255,.16);font-size:.86rem;font-weight:1000;color:#dbeaff
 }
 .btn{
-  background:linear-gradient(180deg,#174ec8,#173d94);
-  color:#fff;font-weight:1000;border-radius:18px;padding:16px 20px;display:inline-flex;gap:10px;align-items:center;justify-content:center;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255,255,255,.18), transparent 28%),
+    linear-gradient(180deg,#1d66f2,#1847b3);
+  color:#fff;font-weight:1000;border-radius:20px;padding:16px 20px;display:inline-flex;gap:10px;align-items:center;justify-content:center;
   min-height:58px;font-size:1.02rem;
-  box-shadow:0 10px 24px rgba(21,79,200,.38), inset 0 0 0 1px rgba(255,255,255,.12);
+  box-shadow:0 14px 28px rgba(21,79,200,.34), inset 0 0 0 1px rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.08);
 }
-.btn:hover{transform:translateY(-1px);box-shadow:0 16px 28px rgba(21,79,200,.34), inset 0 0 0 1px rgba(255,255,255,.14)}
-.btn.purple{background:linear-gradient(180deg,#7a34f8,#5620b9)}
-.btn.green{background:linear-gradient(180deg,#1cb958,#13823d)}
-.btn.yellow{background:linear-gradient(180deg,#ffeb52,#ffbf00);color:#3f2e00;text-transform:uppercase;font-size:1.12rem;padding:18px 24px;border-radius:20px;min-height:62px}
+.btn:hover{transform:translateY(-2px) scale(1.01);box-shadow:0 18px 34px rgba(21,79,200,.34), inset 0 0 0 1px rgba(255,255,255,.16)}
+.btn.purple{background:radial-gradient(circle at 20% 18%, rgba(255,255,255,.16), transparent 28%), linear-gradient(180deg,#8c49ff,#5c25c8)}
+.btn.green{background:radial-gradient(circle at 20% 18%, rgba(255,255,255,.16), transparent 28%), linear-gradient(180deg,#24c767,#168647)}
+.btn.yellow{background:radial-gradient(circle at 20% 18%, rgba(255,255,255,.18), transparent 28%), linear-gradient(180deg,#ffef6a,#ffc61d);color:#3f2e00;text-transform:uppercase;font-size:1.12rem;padding:18px 24px;border-radius:22px;min-height:62px}
 .heroPanel{padding:22px;display:grid;grid-template-rows:auto auto auto;gap:18px;min-height:360px;position:relative;overflow:hidden}
 .heroPanel::after{content:"";position:absolute;inset:auto -10% -14% 50%;height:320px;background:radial-gradient(circle, rgba(42,207,255,.3), transparent 65%)}
 .heroHeadline{z-index:1;text-align:center}
@@ -366,13 +410,15 @@ button{font:inherit;border:0;cursor:pointer}
 .navTile{
   padding:20px 16px;text-align:center;font-weight:1000;font-size:1.08rem;display:grid;gap:10px;align-content:center;
   background:
-    radial-gradient(circle at 14% 16%, rgba(255,255,255,.1), transparent 22%),
+    radial-gradient(circle at 14% 16%, rgba(61,212,255,.16), transparent 22%),
     linear-gradient(180deg, rgba(22,37,78,.98), rgba(10,20,46,.98));
-  border-radius:24px
+  border-radius:24px;
+  border:1px solid rgba(116,205,255,.18)
 }
 .navTile .em{
   width:58px;height:58px;border-radius:18px;display:grid;place-items:center;
-  margin:auto;font-size:2rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12)
+  margin:auto;font-size:2rem;background:linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.08));border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 10px 20px rgba(0,0,0,.16)
 }
 .spotlightSection{display:grid;grid-template-columns:1.3fr .9fr;gap:16px}
 .spotlightMain{
@@ -446,6 +492,29 @@ button{font:inherit;border:0;cursor:pointer}
   font-size:.78rem;font-weight:1000;letter-spacing:.08em;text-transform:uppercase
 }
 .routeSpotlightStats{display:flex;gap:10px;flex-wrap:wrap}
+.routeSectionNav{
+  position:sticky;top:10px;z-index:8;
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;
+  padding:12px;border-radius:22px;
+  background:rgba(6,17,40,.82);
+  border:1px solid rgba(116,205,255,.18);
+  backdrop-filter:blur(14px);
+  box-shadow:0 16px 32px rgba(0,0,0,.22)
+}
+.routeNavBtn{
+  min-height:56px;padding:12px 10px;border-radius:18px;
+  background:linear-gradient(180deg, rgba(33,63,136,.96), rgba(18,40,92,.96));
+  border:1px solid rgba(116,205,255,.18);color:#eff7ff;
+  font-weight:1000;display:grid;gap:4px;justify-items:center;align-content:center;
+  text-align:center
+}
+.routeNavBtn small{font-size:.78rem;color:#bfe5ff}
+.routeNavBtn.primary{
+  background:linear-gradient(180deg,#ffeb52,#ffbf00);
+  color:#3f2e00;border-color:rgba(255,214,10,.34)
+}
+.routeNavBtn.primary small{color:#5a4300}
+.routeNavBtn:hover{transform:translateY(-1px);box-shadow:0 14px 24px rgba(0,0,0,.22)}
 .cyberSpotlight{
   background:
     radial-gradient(circle at 12% 20%, rgba(26,216,255,.16), transparent 24%),
@@ -464,7 +533,15 @@ button{font:inherit;border:0;cursor:pointer}
 .mobileSectionNav{display:none;gap:10px}
 .mobileSectionNav .btn{width:100%}
 .mapMain{padding:14px;display:grid;gap:12px}
-.mapCanvas{position:relative;min-height:960px;overflow:hidden;padding:24px;background:
+.mapBoardNav{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;
+  padding:10px;border-radius:20px;
+  background:rgba(5,15,36,.56);
+  border:1px solid rgba(116,205,255,.16);
+  backdrop-filter:blur(12px)
+}
+.mapBoardNav .routeNavBtn{min-height:54px;padding:10px 8px}
+.mapCanvas{position:relative;min-height:960px;overflow:hidden;padding:20px 16px 28px;background:
  radial-gradient(circle at 20% 18%, rgba(75,152,255,.16), transparent 18%),
  radial-gradient(circle at 74% 24%, rgba(147,51,234,.14), transparent 18%),
  linear-gradient(180deg,#0c1735,#09162f 60%,#071024);
@@ -490,26 +567,58 @@ button{font:inherit;border:0;cursor:pointer}
 .legendDot.current{background:#ffd44d;color:#ffd44d}
 .legendDot.done{background:#22c55e;color:#22c55e}
 .legendDot.pending{background:#59c7ff;color:#59c7ff}
-.missionNode{position:absolute;width:186px;display:grid;gap:10px;justify-items:center;z-index:2}
+.missionNode{position:absolute;width:168px;display:grid;gap:6px;justify-items:center;z-index:2}
 .nodeOrb{
-  width:132px;height:132px;border-radius:50%;display:grid;place-items:center;font-size:3.2rem;
-  border:4px solid rgba(255,255,255,.35);box-shadow:0 0 32px rgba(0,0,0,.35), 0 0 40px currentColor;
+  position:relative;isolation:isolate;
+  width:82px;height:82px;border-radius:50%;display:grid;place-items:center;font-size:1.55rem;
+  border:3px solid rgba(255,255,255,.32);box-shadow:0 0 22px rgba(0,0,0,.3), 0 0 28px currentColor;
   background:radial-gradient(circle at 35% 35%, rgba(255,255,255,.22), rgba(255,255,255,.05) 38%, rgba(0,0,0,.12) 39%), linear-gradient(180deg, rgba(255,255,255,.16), rgba(0,0,0,.1));
-  cursor:pointer
+  cursor:pointer;transition:transform .18s ease, box-shadow .18s ease
 }
+.nodeOrb::after{
+  content:"";position:absolute;inset:8px;border-radius:50%;
+  background:radial-gradient(circle at 32% 28%, rgba(255,255,255,.34), transparent 42%);
+  opacity:.92;z-index:-1
+}
+.nodeOrb:hover{transform:translateY(-2px) scale(1.04)}
 .nodeCard{
-  width:100%;padding:12px 14px;border-radius:20px;border:2px solid rgba(122,187,255,.32);
-  background:rgba(7,18,39,.94);backdrop-filter:blur(12px);display:grid;gap:8px;
-  box-shadow:0 14px 28px rgba(0,0,0,.18)
+  position:relative;overflow:hidden;
+  width:100%;padding:9px 10px 10px;border-radius:16px;border:1px solid rgba(122,187,255,.3);
+  background:
+    linear-gradient(180deg, rgba(13,26,58,.96), rgba(7,18,39,.97)),
+    linear-gradient(135deg, rgba(255,255,255,.06), transparent 46%);
+  backdrop-filter:blur(12px);display:grid;gap:7px;
+  box-shadow:0 10px 22px rgba(0,0,0,.18);
+  cursor:pointer;
+  text-align:left
 }
+.nodeCard::before{
+  content:"";position:absolute;left:10px;right:10px;top:0;height:1px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent)
+}
+.nodeCard:hover{transform:translateY(-1px);box-shadow:0 14px 26px rgba(0,0,0,.22)}
 .nodeTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
 .nodeStep{
-  min-width:34px;height:34px;border-radius:12px;display:grid;place-items:center;
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);font-weight:1000
+  min-width:28px;height:28px;border-radius:10px;display:grid;place-items:center;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);font-weight:1000;font-size:.88rem
 }
-.nodeTitle{font-size:1.02rem;line-height:1.18;text-align:left}
+.nodeTitle{font-size:.88rem;line-height:1.12;text-align:left;text-wrap:balance}
+.nodeHint{
+  color:#d6e7ff;font-size:.72rem;line-height:1.24;text-align:left;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  min-height:2.15em
+}
+.nodeMetaLine{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}
+.nodeChip{
+  width:max-content;padding:5px 8px;border-radius:999px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(116,205,255,.16);
+  color:#cfe8ff;font-size:.64rem;font-weight:1000;letter-spacing:.04em;text-transform:uppercase
+}
+.nodeAction{
+  color:#7ee7ff;font-size:.67rem;font-weight:1000;letter-spacing:.04em;text-transform:uppercase
+}
 .nodeStars{
-  width:max-content;padding:7px 10px;border-radius:999px;font-size:.86rem;font-weight:1000;
+  width:max-content;padding:5px 8px;border-radius:999px;font-size:.72rem;font-weight:1000;
   background:rgba(255,255,255,.08);border:1px solid rgba(116,205,255,.18);color:#dcecff
 }
 .nodeStars.done{background:rgba(34,197,94,.16);border-color:rgba(34,197,94,.28);color:#aaf5c6}
@@ -520,11 +629,19 @@ button{font:inherit;border:0;cursor:pointer}
 .nodeCurrent .nodeOrb{animation:pulse 1.8s infinite}
 .nodeDone .nodeOrb{border-color:rgba(34,197,94,.55);box-shadow:0 0 32px rgba(0,0,0,.35), 0 0 40px rgba(34,197,94,.35)}
 .nodeDone .nodeCard{border-color:rgba(34,197,94,.35)}
+.nodeDone .nodeAction{color:#aaf5c6}
 .nodeCurrent .nodeCard{border-color:rgba(250,204,21,.4)}
+.nodeCurrent .nodeAction{color:#ffe38b}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 .sidebar{display:grid;gap:14px}
 .sideCard{padding:20px;display:grid;gap:14px;align-content:start}
-.sideCard{background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04))}
+.sideCard{
+  background:
+    radial-gradient(circle at 12% 14%, rgba(61,212,255,.14), transparent 24%),
+    linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.04));
+  border:1px solid rgba(116,205,255,.18);
+  box-shadow:var(--panelGlow)
+}
 .ring{width:150px;height:150px;border-radius:50%;background:conic-gradient(#20d4a3 0 180deg, #1a2347 180deg 360deg);display:grid;place-items:center;justify-self:center}
 .ring>div{width:112px;height:112px;border-radius:50%;background:#07112a;display:grid;place-items:center;font-size:2rem;font-weight:1000}
 .chest{height:150px;border-radius:24px;background:linear-gradient(180deg,#8b5cf6,#3b1ca4);display:grid;place-items:center;font-size:4rem}
@@ -564,12 +681,17 @@ button{font:inherit;border:0;cursor:pointer}
 .resourceList{display:grid;gap:12px}
 .resourceItem{
   padding:16px;border-radius:18px;background:rgba(255,255,255,.07);
-  border:1px solid rgba(116,205,255,.18);display:grid;gap:8px
+  border:1px solid rgba(116,205,255,.18);display:grid;gap:8px;box-shadow:0 10px 22px rgba(3,10,28,.14)
 }
 .resourceItem b{font-size:1.12rem}
 .resourceItem span{color:#d5e5ff;line-height:1.45;font-size:.98rem}
 .catalogSection{display:grid;gap:14px}
-.catalogBar{padding:20px;display:grid;gap:16px}
+.catalogBar{
+  padding:22px;display:grid;gap:16px;
+  background:
+    radial-gradient(circle at 12% 14%, rgba(61,212,255,.14), transparent 24%),
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04))
+}
 .catalogHeader{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
 .catalogHeader h3{margin:0;font-size:1.8rem}
 .catalogHeader p{margin:6px 0 0;color:#d7e7ff;line-height:1.45;max-width:64ch}
@@ -586,15 +708,15 @@ button{font:inherit;border:0;cursor:pointer}
 .catalogChip.active{background:linear-gradient(180deg,#29d7ff,#235cff);color:#04102a}
 .missionCatalogGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .missionCard{
-  padding:18px;border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.06));
-  border:1px solid rgba(116,205,255,.18);display:grid;gap:14px;align-content:start
+  padding:20px;border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.06));
+  border:1px solid rgba(116,205,255,.2);display:grid;gap:14px;align-content:start;box-shadow:var(--panelGlow)
 }
 .missionCardTop{align-items:center}
 .missionCard h4{letter-spacing:0}
 .missionCardTop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
 .missionCard .missionIcon{
   width:56px;height:56px;border-radius:18px;display:grid;place-items:center;font-size:2rem;
-  background:rgba(255,255,255,.08);border:1px solid rgba(116,205,255,.18)
+  background:linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.08));border:1px solid rgba(116,205,255,.18)
 }
 .missionCard h4{margin:0;font-size:1.3rem}
 .missionCard p{margin:0;color:#d6e7ff;line-height:1.48;font-size:1rem}
@@ -617,9 +739,10 @@ body[data-route="care"] .routeScreen.active .brandBox{
   box-shadow:0 22px 42px rgba(0,0,0,.24), inset 0 0 0 1px rgba(255,208,39,.12)
 }
 .missionEmpty{padding:30px;border-radius:22px;border:1px dashed rgba(116,205,255,.24);text-align:center;color:#d8e8ff}
-.missionLayout{display:grid;grid-template-columns:.9fr 1.9fr 1fr;gap:14px}
-.leftEvidence,.centerMail,.rightChoice,.bottomMission{padding:16px}
+.missionLayout{display:grid;grid-template-columns:minmax(210px,.76fr) minmax(0,1.52fr) minmax(240px,.82fr);gap:12px}
+.leftEvidence,.centerMail,.rightChoice,.bottomMission{padding:14px}
 .leftEvidence{display:grid;gap:14px;align-content:start;background:linear-gradient(180deg, rgba(13,29,67,.98), rgba(8,18,43,.98))}
+.leftEvidence,.rightChoice{min-height:0}
 .backBtn{display:inline-flex;gap:10px;align-items:center;padding:12px 16px;border-radius:16px;background:#0d1837;color:#fff;font-weight:900;border:2px solid rgba(62,175,255,.24)}
 .missionHeader{grid-column:1/-1;display:grid;grid-template-columns:1.2fr .55fr;gap:14px}
 .missionRouteBanner{
@@ -628,14 +751,20 @@ body[data-route="care"] .routeScreen.active .brandBox{
   color:#dcecff;font-size:.8rem;font-weight:1000;letter-spacing:.08em;text-transform:uppercase
 }
 .missionTitle{
-  padding:18px 20px;display:grid;gap:10px;
+  padding:22px 24px;display:grid;gap:14px;position:relative;overflow:hidden;
   background:
-    radial-gradient(circle at 10% 20%, rgba(26,216,255,.12), transparent 28%),
-    linear-gradient(180deg, rgba(15,38,85,.98), rgba(8,17,41,.98))
+    radial-gradient(circle at 12% 18%, rgba(26,216,255,.18), transparent 30%),
+    radial-gradient(circle at 88% 86%, rgba(96,165,250,.18), transparent 28%),
+    linear-gradient(145deg, rgba(16,46,108,.98), rgba(8,18,46,.98))
+}
+.missionTitle::after{
+  content:"";position:absolute;right:-28px;bottom:-34px;width:190px;height:190px;
+  border-radius:42px;background:linear-gradient(135deg, rgba(255,255,255,.12), transparent 62%);
+  transform:rotate(18deg);opacity:.48;pointer-events:none
 }
 .missionTitle small{color:var(--cyan);text-transform:uppercase;font-weight:1000;letter-spacing:.08em}
-.missionTitle h2{margin:0;font-size:2.15rem;text-transform:uppercase;font-weight:1000;line-height:1.04}
-.missionTitle p{margin:0;font-size:1.1rem;color:#d3eaff;line-height:1.48;max-width:54ch}.missionTitle .highlight{color:#ffd84d;font-weight:900}
+.missionTitle h2{margin:0;font-size:2.35rem;text-transform:uppercase;font-weight:1000;line-height:1.02;text-wrap:balance}
+.missionTitle p{margin:0;font-size:1.12rem;color:#d3eaff;line-height:1.5;max-width:58ch}.missionTitle .highlight{color:#ffd84d;font-weight:900}
 .digitalMissionMode .missionTitle{
   background:
     radial-gradient(circle at 10% 20%, rgba(26,216,255,.14), transparent 28%),
@@ -681,29 +810,30 @@ body[data-route="care"] .routeScreen.active .brandBox{
   color:#e5f4ff;font-size:.84rem;font-weight:1000
 }
 .learnPanel{
-  display:grid;gap:12px;padding:14px;border-radius:20px;background:rgba(255,255,255,.06);
-  border:1px solid rgba(116,205,255,.16)
+  display:grid;gap:12px;padding:16px;border-radius:24px;background:rgba(255,255,255,.07);
+  border:1px solid rgba(116,205,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)
 }
 .learnPanelHeader{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
-.learnPanelHeader b{font-size:1.08rem;color:#fff}
+.learnPanelHeader b{font-size:1.14rem;color:#fff}
 .learnPanelHeader span{color:#bfe9ff;font-weight:900}
 .learnChecklist{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .learnStep{
-  padding:12px 14px;border-radius:18px;background:rgba(255,255,255,.05);
-  border:1px solid rgba(116,205,255,.14);display:grid;gap:6px
+  padding:14px 16px;border-radius:20px;background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+  border:1px solid rgba(116,205,255,.16);display:grid;gap:6px;min-height:104px
 }
-.learnStep b{font-size:1rem;color:#fff}
+.learnStep b{font-size:1.04rem;color:#fff}
 .learnStep span{color:#d8e8ff;line-height:1.42;font-size:.98rem}
 .kidGuideRow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .kidGuideCard{
-  padding:14px;border-radius:20px;background:rgba(255,255,255,.07);
-  border:1px solid rgba(116,205,255,.16);display:grid;gap:8px;align-content:start;min-height:134px
+  padding:16px;border-radius:22px;background:linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.05));
+  border:1px solid rgba(116,205,255,.18);display:grid;gap:10px;align-content:start;min-height:144px;
+  box-shadow:0 12px 26px rgba(3,10,28,.18)
 }
 .kidGuideCard .ico{
-  width:48px;height:48px;border-radius:16px;display:grid;place-items:center;
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);font-size:1.4rem
+  width:54px;height:54px;border-radius:18px;display:grid;place-items:center;
+  background:linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.08));border:1px solid rgba(255,255,255,.14);font-size:1.55rem
 }
-.kidGuideCard b{font-size:1.06rem;color:#fff}
+.kidGuideCard b{font-size:1.1rem;color:#fff}
 .kidGuideCard span{color:#d9e8ff;line-height:1.42;font-size:.96rem}
 .careMissionMode .kidGuideCard{
   border-color:rgba(255,208,39,.18);
@@ -730,11 +860,17 @@ body[data-route="care"] .routeScreen.active .brandBox{
 }
 .coachBubble b{display:block;margin-bottom:4px;color:#7ce7ff}
 .timerCard{
-  padding:20px;display:grid;gap:12px;
+  padding:22px;display:grid;gap:16px;align-content:start;position:relative;overflow:hidden;
   background:
-    radial-gradient(circle at 85% 15%, rgba(255,208,39,.12), transparent 24%),
+    radial-gradient(circle at 85% 15%, rgba(255,208,39,.16), transparent 24%),
+    radial-gradient(circle at 18% 88%, rgba(26,216,255,.12), transparent 24%),
     linear-gradient(180deg, rgba(20,34,74,.98), rgba(10,19,45,.98))
 }
+.timerCard::after{
+  content:"🎯";position:absolute;right:18px;top:16px;font-size:2rem;opacity:.16;pointer-events:none
+}
+.timerCard .bar{height:12px}
+.timerCard .bar>span{box-shadow:0 0 18px rgba(39,167,255,.42)}
 .time{font-size:3rem;color:var(--yellow);font-weight:1000}
 .evidenceTop,.questionPrompt{display:grid;gap:6px}
 .sectionTag{
@@ -759,40 +895,370 @@ body[data-route="care"] .routeScreen.active .brandBox{
 .mailBody{font-size:1.18rem;line-height:1.52}.mark{background:#ffd8e3;border-radius:8px;padding:2px 4px;color:#d61f45;font-weight:900}
 .linkMark{display:inline-block;background:#eef3ff;border:2px solid #ff8da5;border-radius:10px;padding:8px 12px;color:#1d4ed8;text-decoration:underline;font-weight:900}
 .choicePanel{
-  display:grid;gap:16px;align-content:start;
+  display:grid;gap:10px;align-content:start;
   background:
     radial-gradient(circle at 100% 0, rgba(139,92,246,.14), transparent 30%),
     linear-gradient(180deg, rgba(15,31,73,.98), rgba(8,17,42,.98))
 }
 .decisionGuide{
-  padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.06);
-  border:1px solid rgba(116,205,255,.16);color:#d8e8ff;line-height:1.46;font-size:1rem
+  padding:10px 12px;border-radius:16px;background:rgba(255,255,255,.06);
+  border:1px solid rgba(116,205,255,.16);color:#d8e8ff;line-height:1.34;font-size:.9rem
 }
 .bigChoice{
-  padding:18px 18px;border-radius:22px;color:#fff;font-weight:1000;font-size:1.16rem;text-align:left;min-height:110px;
-  display:grid;gap:10px;border:2px solid rgba(125,190,255,.18);
-  background:linear-gradient(180deg,rgba(32,57,108,.96),rgba(15,29,67,.98));
-  box-shadow:0 16px 32px rgba(3,10,28,.28), inset 0 1px 0 rgba(255,255,255,.06);
+  padding:14px 16px;border-radius:20px;color:#fff;font-weight:1000;font-size:1rem;text-align:left;min-height:88px;
+  display:grid;gap:8px;border:2px solid rgba(125,190,255,.22);position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 0 50%, rgba(56,189,248,.18), transparent 28%),
+    linear-gradient(180deg,rgba(32,57,108,.98),rgba(15,29,67,.98));
+  box-shadow:0 14px 28px rgba(3,10,28,.24), inset 0 1px 0 rgba(255,255,255,.06);
   cursor:pointer;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease
 }
-.bigChoice:hover{transform:translateY(-2px);border-color:rgba(103,214,255,.42);box-shadow:0 20px 38px rgba(3,10,28,.34), inset 0 1px 0 rgba(255,255,255,.08)}
-.bigChoice:disabled{cursor:default;transform:none;opacity:1}
-.bigChoiceTop{display:flex;gap:12px;align-items:center}
-.choiceBadge{
-  width:42px;height:42px;border-radius:15px;display:grid;place-items:center;
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);font-size:1.04rem;font-weight:1000
+.bigChoice::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:7px;
+  background:linear-gradient(180deg,#53ddff,#2563ff)
 }
-.choiceText{flex:1}
-.bigChoice small{display:block;font-size:.98rem;opacity:.95;color:#bfe9ff;line-height:1.38}.bigChoice.red,.bigChoice.green{background:linear-gradient(180deg,rgba(32,57,108,.96),rgba(15,29,67,.98));border-color:rgba(125,190,255,.18)}
-.tipBox{padding:16px;border-radius:22px;background:rgba(67,56,202,.18);border:2px solid rgba(133,110,255,.28);display:grid;grid-template-columns:72px 1fr;gap:12px;align-items:center}
-.tipBox .avatar{width:72px;height:72px;font-size:2.4rem;background:radial-gradient(circle at 35% 25%, #8b5cf6, #31135d)}
-.missionFooter{grid-column:1/-1;display:grid;grid-template-columns:1.2fr .65fr 1fr;gap:14px}
-.progressPath{padding:16px;display:grid;gap:14px}.path{display:flex;align-items:center;gap:10px}.dot{flex:1;height:6px;background:#15264d;border-radius:99px;position:relative}.dot::before{content:"";position:absolute;left:0;top:0;bottom:0;width:35%;background:linear-gradient(90deg,#33d4ff,#1f77ff);border-radius:99px}.step{width:54px;height:54px;border-radius:18px;display:grid;place-items:center;font-weight:1000;background:#142652;border:2px solid rgba(129,198,255,.25)}.step.active{background:#1e50e6}.step.done{background:#15803d}
-.rewardCard,.feedbackCard{padding:18px;display:grid;gap:14px}
-.rewardLine{display:flex;gap:16px;justify-content:center;align-items:center;font-size:2rem;font-weight:1000}
-.feedbackCard p{margin:0;color:#d2ecff;font-size:1.12rem;line-height:1.46}
+.bigChoice:hover{transform:translateY(-2px);border-color:rgba(103,214,255,.52);box-shadow:0 18px 36px rgba(3,10,28,.32), inset 0 1px 0 rgba(255,255,255,.08)}
+.bigChoice:disabled{cursor:default;transform:none;opacity:1}
+.bigChoiceTop{display:flex;gap:10px;align-items:center}
+.choiceBadge{
+  width:38px;height:38px;border-radius:13px;display:grid;place-items:center;
+  background:linear-gradient(180deg,#3b82f6,#1d4ed8);border:1px solid rgba(255,255,255,.18);font-size:.92rem;font-weight:1000;
+  box-shadow:0 8px 18px rgba(29,78,216,.28)
+}
+.choiceText{flex:1;font-size:1.04rem;line-height:1.2}
+.bigChoice small{display:block;font-size:.86rem;opacity:.98;color:#d3efff;line-height:1.32}.bigChoice.red,.bigChoice.green{background:linear-gradient(180deg,rgba(32,57,108,.96),rgba(15,29,67,.98));border-color:rgba(125,190,255,.18)}
+.tipBox{padding:12px;border-radius:18px;background:rgba(67,56,202,.18);border:1px solid rgba(133,110,255,.28);display:grid;grid-template-columns:52px 1fr;gap:10px;align-items:center}
+.tipBox .avatar{width:52px;height:52px;font-size:1.7rem;background:radial-gradient(circle at 35% 25%, #8b5cf6, #31135d)}
+.missionFooter{grid-column:1/-1;display:grid;grid-template-columns:1fr .72fr .9fr;gap:12px}
+.progressPath{padding:12px;display:grid;gap:10px}.path{display:flex;align-items:center;gap:8px}.dot{flex:1;height:5px;background:#15264d;border-radius:99px;position:relative}.dot::before{content:"";position:absolute;left:0;top:0;bottom:0;width:35%;background:linear-gradient(90deg,#33d4ff,#1f77ff);border-radius:99px}.step{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;font-weight:1000;background:#142652;border:1px solid rgba(129,198,255,.25)}.step.active{background:#1e50e6}.step.done{background:#15803d}
+.rewardCard,.feedbackCard{padding:12px;display:grid;gap:10px}
+.rewardLine{display:flex;gap:12px;justify-content:center;align-items:center;font-size:1.32rem;font-weight:1000}
+.feedbackCard p{margin:0;color:#d2ecff;font-size:.95rem;line-height:1.34}
 .feedbackLead{display:grid;gap:8px}
-.feedbackLead b{font-size:1.08rem}
+.feedbackLead b{font-size:.96rem}
+#phishing .missionHeader,
+#genericMission .missionHeader{grid-template-columns:minmax(0,1.45fr) minmax(210px,.55fr)}
+#phishing .missionLayout{
+  grid-template-columns:minmax(210px,.7fr) minmax(0,1.4fr) minmax(250px,.82fr);
+  align-items:start
+}
+#genericMission .dynamicMissionLayout{
+  grid-template-columns:minmax(170px,.54fr) minmax(0,1.95fr) minmax(210px,.66fr);
+  align-items:start
+}
+#phishing .leftEvidence,
+#genericMission .leftEvidence{
+  max-height:min(72vh,620px);
+  overflow:auto;
+  scrollbar-width:thin
+}
+#phishing .rightChoice,
+#genericMission .rightChoice{
+  max-height:none;
+  overflow:visible;
+  scrollbar-width:auto
+}
+#phishing .centerMail,
+#genericMission .dynamicCenter{min-width:0}
+#phishing .missionFooter,
+#genericMission .dynamicFooter{
+  grid-column:2/4;
+  grid-template-columns:.92fr .72fr .96fr
+}
+#genericMission #dynQuestion{font-size:1.08rem!important;line-height:1.16}
+#genericMission #dynOptions{gap:10px!important}
+#genericMission #dynHelperTitle{font-size:.98rem!important}
+#genericMission #dynAdvice{font-size:.84rem!important;line-height:1.24}
+#genericMission .questionPrompt{gap:4px}
+#genericMission .decisionHelper,
+#phishing .decisionHelper{padding:10px;gap:8px}
+#genericMission .decisionHint,
+#phishing .decisionHint{font-size:.86rem;line-height:1.28}
+#genericMission .decisionHint span:first-child,
+#phishing .decisionHint span:first-child{
+  width:24px;height:24px;border-radius:9px;font-size:.78rem
+}
+#genericMission .progressPath > div:first-child,
+#genericMission .rewardCard > div:first-child,
+#genericMission .feedbackLead > div:first-child,
+#phishing .progressPath > div:first-child,
+#phishing .rewardCard > div:first-child,
+#phishing .feedbackLead > div:first-child{font-size:1rem!important;line-height:1.1}
+#genericMission .feedbackCard p,
+#phishing .feedbackCard p{font-size:.84rem;line-height:1.24}
+#genericMission .feedbackLead b,
+#phishing .feedbackLead b{font-size:.82rem}
+#genericMission .rewardLine,
+#phishing .rewardLine{font-size:1.08rem}
+#phishing .rightChoice,
+#genericMission .rightChoice{
+  padding:12px;
+  border:2px solid rgba(83,221,255,.24);
+  box-shadow:0 24px 50px rgba(0,0,0,.26), inset 0 1px 0 rgba(255,255,255,.07)
+}
+#phishing .questionPrompt,
+#genericMission .questionPrompt{
+  padding:10px 12px;border-radius:18px;background:rgba(255,255,255,.05);
+  border:1px solid rgba(116,205,255,.14)
+}
+#phishing .questionPrompt > div:last-child,
+#genericMission .questionPrompt > div:last-child{
+  font-size:1.22rem!important;line-height:1.2!important
+}
+#phishing .decisionGuide,
+#genericMission .decisionGuide{
+  padding:12px 14px;
+  border-radius:18px;
+  background:rgba(24,46,102,.72);
+  border:1px solid rgba(103,214,255,.22)
+}
+#phishing .decisionHelper,
+#genericMission .decisionHelper{
+  padding:12px;
+  border-radius:20px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(116,205,255,.18)
+}
+#phishing .decisionHintList,
+#genericMission .decisionHintList{gap:6px}
+#phishing .decisionHint,
+#genericMission .decisionHint{font-size:.82rem;line-height:1.24}
+#phishing .decisionHint span:first-child,
+#genericMission .decisionHint span:first-child{
+  width:22px;height:22px;border-radius:8px
+}
+#genericMission .scenarioCards{gap:10px}
+#genericMission .scenarioCard{min-height:96px;padding:12px}
+#genericMission .scenarioWarning{font-size:.9rem}
+.storyStage{
+  display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:center;
+  padding:14px 16px;border-radius:20px;
+  background:linear-gradient(135deg, rgba(15,102,255,.1), rgba(255,255,255,.56));
+  border:1px solid rgba(62,175,255,.2)
+}
+.storyAvatar{
+  width:72px;height:72px;border-radius:22px;display:grid;place-items:center;
+  background:linear-gradient(180deg,#1748b6,#1c7fff);color:#fff;font-size:2rem;
+  box-shadow:0 10px 22px rgba(18,72,182,.22)
+}
+.storyText{display:grid;gap:4px}
+.storyLabel{
+  width:max-content;padding:6px 10px;border-radius:999px;
+  background:rgba(16,67,173,.1);color:#1147b0;font-size:.72rem;font-weight:1000;
+  letter-spacing:.08em;text-transform:uppercase
+}
+.storyText b{font-size:1.08rem;color:#102246}
+.storyText p{margin:0;color:#405279;font-size:.96rem;line-height:1.42}
+.storyFlow{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px
+}
+.storyStep{
+  padding:12px 12px 12px 44px;border-radius:18px;background:#fff;
+  border:1px solid rgba(59,99,180,.14);box-shadow:0 8px 18px rgba(12,31,70,.06);
+  position:relative;display:grid;gap:4px
+}
+.storyStepIndex{
+  position:absolute;left:12px;top:12px;width:22px;height:22px;border-radius:9px;
+  display:grid;place-items:center;background:#1f63ff;color:#fff;font-size:.76rem;font-weight:1000
+}
+.storyStep b{font-size:.94rem;color:#102246}
+.storyStep span{font-size:.84rem;line-height:1.3;color:#536585}
+.scenarioCardTop{
+  display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap
+}
+.scenarioCardIndex{
+  min-width:28px;height:28px;padding:0 8px;border-radius:10px;display:grid;place-items:center;
+  background:#123f9a;color:#fff;font-size:.78rem;font-weight:1000
+}
+.scenarioCardTag{
+  padding:6px 10px;border-radius:999px;background:rgba(19,74,170,.08);
+  color:#24437a;font-size:.72rem;font-weight:1000;letter-spacing:.04em;text-transform:uppercase
+}
+.dynamicMissionLayout .dynamicCenter{padding:8px}
+.dynamicMissionLayout .scenarioPanel{
+  min-height:470px;
+  padding:22px;
+  gap:18px;
+  border-radius:24px
+}
+.dynamicMissionLayout .scenarioTop{grid-template-columns:96px 1fr;gap:18px}
+.dynamicMissionLayout .scenarioIcon{
+  width:88px;height:88px;border-radius:24px;font-size:3.1rem
+}
+.dynamicMissionLayout .scenarioPanel h3{
+  font-size:1.82rem;
+  line-height:1.14
+}
+.dynamicMissionLayout .scenarioPanel p{
+  font-size:1.08rem;
+  line-height:1.52
+}
+.dynamicMissionLayout .scenarioCards{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px
+}
+.dynamicMissionLayout .scenarioCard{
+  min-height:104px;
+  padding:14px;
+  border-radius:18px
+}
+.dynamicMissionLayout .scenarioCard b{font-size:1.02rem}
+.dynamicMissionLayout .scenarioCard span{font-size:.95rem;line-height:1.36}
+.dynamicMissionLayout .scenarioWarning{
+  padding:12px 14px;
+  font-size:.95rem;
+  line-height:1.34
+}
+.dynamicMissionLayout .storyStage{
+  grid-template-columns:84px 1fr;
+  padding:16px 18px
+}
+.dynamicMissionLayout .storyAvatar{
+  width:84px;height:84px;border-radius:24px;font-size:2.3rem
+}
+.dynamicMissionLayout .storyText b{font-size:1.18rem}
+.dynamicMissionLayout .storyText p{font-size:1rem}
+.dynamicMissionLayout .storyStep{
+  min-height:90px;
+  padding:14px 14px 14px 48px
+}
+.dynamicMissionLayout .storyStepIndex{
+  left:14px;top:14px
+}
+.dynamicMissionLayout .bigChoice{
+  min-height:96px;
+  padding:16px 18px;
+  border-radius:22px
+}
+.dynamicMissionLayout .bigChoice small{
+  font-size:.86rem;
+  line-height:1.32
+}
+.careMissionMode .storyStage{
+  background:linear-gradient(135deg, rgba(217,119,6,.14), rgba(255,248,220,.68));
+  border-color:rgba(217,119,6,.2)
+}
+.careMissionMode .storyAvatar{
+  background:linear-gradient(180deg,#b45309,#d97706)
+}
+.careMissionMode .storyLabel{
+  background:rgba(180,83,9,.1);
+  color:#8b4513
+}
+.careMissionMode .storyStepIndex{
+  background:#b45309
+}
+.careMissionMode .scenarioCardTag{
+  background:rgba(180,83,9,.1);
+  color:#7c4a15
+}
+#phishing .topbar,
+#genericMission .topbar,
+#privacy .topbar,
+#finalChallenge .topbar{
+  grid-template-columns:minmax(0,1.2fr) minmax(220px,.78fr) minmax(120px,.42fr) minmax(120px,.42fr);
+  gap:10px
+}
+#phishing .brandBox,
+#genericMission .brandBox,
+#privacy .brandBox,
+#finalChallenge .brandBox{
+  padding:12px 16px;border-radius:22px;min-height:92px
+}
+#phishing .brandLogo,
+#genericMission .brandLogo,
+#privacy .brandLogo,
+#finalChallenge .brandLogo{
+  width:62px!important;height:62px!important;border-radius:20px
+}
+#phishing .titleMain,
+#genericMission .titleMain,
+#privacy .titleMain,
+#finalChallenge .titleMain{font-size:2rem!important}
+#phishing .titleSub,
+#genericMission .titleSub,
+#privacy .titleSub,
+#finalChallenge .titleSub{font-size:.82rem}
+#phishing .profileBox,
+#genericMission .profileBox,
+#privacy .profileBox,
+#finalChallenge .profileBox{
+  padding:10px 14px;border-radius:22px;min-height:92px
+}
+#phishing .avatar,
+#genericMission .avatar,
+#privacy .avatar,
+#finalChallenge .avatar{
+  width:56px;height:56px;font-size:2rem
+}
+#phishing .playerName,
+#genericMission .playerName,
+#privacy .playerName,
+#finalChallenge .playerName{font-size:1rem}
+#phishing .xpBadge,
+#genericMission .xpBadge,
+#privacy .xpBadge,
+#finalChallenge .xpBadge{padding:6px 9px;font-size:.86rem}
+#phishing .smallStat,
+#genericMission .smallStat,
+#privacy .smallStat,
+#finalChallenge .smallStat{
+  padding:12px 14px;border-radius:22px;min-height:92px
+}
+#phishing .statTop,
+#genericMission .statTop,
+#privacy .statTop,
+#finalChallenge .statTop{font-size:1rem}
+#phishing .bigIcon,
+#genericMission .bigIcon,
+#privacy .bigIcon,
+#finalChallenge .bigIcon{font-size:1.85rem}
+#phishing .missionHeader,
+#genericMission .missionHeader{
+  align-items:stretch
+}
+#phishing .missionTitle,
+#genericMission .missionTitle{
+  border:1px solid rgba(116,205,255,.22);
+  box-shadow:0 24px 54px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.08)
+}
+#phishing .timerCard,
+#genericMission .timerCard{
+  border:1px solid rgba(116,205,255,.22);
+  box-shadow:0 20px 48px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.06)
+}
+#phishing .timerCard > div:first-child,
+#genericMission .timerCard > div:first-child{
+  display:inline-flex;align-items:center;gap:8px;width:max-content;
+  padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);font-size:1rem!important
+}
+#phishing .timerCard .time{
+  font-size:2.6rem
+}
+#genericMission #dynObjective,
+#phishing .timerCard #dynObjective{
+  font-size:1.5rem!important;line-height:1.34
+}
+#phishing .kidGuideCard:nth-child(1),
+#genericMission .kidGuideCard:nth-child(1){background:linear-gradient(180deg, rgba(26,216,255,.16), rgba(255,255,255,.04))}
+#phishing .kidGuideCard:nth-child(2),
+#genericMission .kidGuideCard:nth-child(2){background:linear-gradient(180deg, rgba(255,208,39,.16), rgba(255,255,255,.04))}
+#phishing .kidGuideCard:nth-child(3),
+#genericMission .kidGuideCard:nth-child(3){background:linear-gradient(180deg, rgba(34,197,94,.16), rgba(255,255,255,.04))}
+.dynamicMissionLayout .leftEvidence{
+  gap:10px
+}
+.dynamicMissionLayout .evItem{
+  grid-template-columns:40px 1fr auto;
+  padding:10px;
+  gap:8px
+}
+.dynamicMissionLayout .evIcon{
+  width:40px;height:40px;font-size:1.1rem
+}
+.dynamicMissionLayout .evText b{font-size:.9rem}
+.dynamicMissionLayout .evText span{font-size:.8rem;line-height:1.22}
 .privacyLayout{display:grid;grid-template-columns:1.15fr 1fr .48fr;gap:14px}
 .privacyTitle{grid-column:1/-1;display:grid;grid-template-columns:1.2fr .26fr .44fr;gap:14px}
 .titleBlock,.xpBlock,.adviceBlock,.profileCard,.settingsCard,.rewardSide,.footerBar{padding:16px}
@@ -804,7 +1270,17 @@ body[data-route="care"] .routeScreen.active .brandBox{
 .postFoot{display:flex;justify-content:space-between;padding:10px 12px;font-weight:900;color:#344d79}.warningStrip{padding:10px 14px;border-radius:14px;background:rgba(255,211,60,.1);border:2px solid rgba(255,211,60,.2);color:#ffe59c;font-weight:800}
 .setting{display:grid;grid-template-columns:50px 1fr auto;gap:14px;align-items:center;padding:16px;border-radius:18px;border:2px solid rgba(129,198,255,.14)}
 .settingIcon{width:54px;height:54px;border-radius:18px;display:grid;place-items:center;background:#12234c;font-size:1.9rem}.setting h4{margin:0 0 6px;font-size:1.28rem}.setting p{margin:0;color:var(--muted);font-size:1rem;line-height:1.4}
-.choiceSet{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.chip{padding:11px 16px;border-radius:14px;background:#162448;color:#d6e4ff;font-weight:900;border:2px solid transparent}.chip.good{background:#1a8f42;color:#fff}.chip.bad{background:#a12c3d;color:#fff}
+.choiceSet{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.chip{
+  padding:12px 16px 12px 18px;border-radius:16px;background:linear-gradient(180deg,#1a2b57,#132347);color:#e6f2ff;font-weight:900;
+  border:2px solid rgba(116,205,255,.18);position:relative;overflow:hidden;min-height:48px
+}
+.chip::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:6px;
+  background:linear-gradient(180deg,#53ddff,#2563ff)
+}
+.chip.good{background:linear-gradient(180deg,#1f9d54,#15733d);color:#fff;border-color:rgba(120,255,175,.22)}
+.chip.bad{background:linear-gradient(180deg,#c43d58,#8f2136);color:#fff;border-color:rgba(255,145,165,.22)}
 .chip.selected{transform:translateY(-1px);box-shadow:0 10px 24px rgba(0,0,0,.22);border-color:rgba(255,255,255,.34)}
 .chip.bad.selected{background:linear-gradient(180deg,#ff6b82,#b42345);color:#fff}
 .chip.good.selected{background:linear-gradient(180deg,#38d975,#15803d);color:#fff}
@@ -868,6 +1344,22 @@ body[data-route="care"] .routeScreen.active .brandBox{
   .helperSteps{grid-template-columns:1fr 1fr}
   .homeCompactBar{grid-template-columns:1fr}
   .homeCompactActions{justify-content:flex-start}
+  #phishing .missionFooter,
+  #genericMission .dynamicFooter{grid-column:1/-1}
+  #phishing .leftEvidence,
+  #phishing .rightChoice,
+  #genericMission .leftEvidence,
+  #genericMission .rightChoice{max-height:none}
+  .storyFlow{grid-template-columns:1fr}
+  .storyStage{grid-template-columns:64px 1fr}
+  .storyAvatar{width:64px;height:64px;font-size:1.8rem}
+}
+@media (max-width:1500px){
+  .mapLayout{grid-template-columns:1fr}
+  .sidebar{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+  .mapMain{padding:14px 10px;overflow-x:auto}
+  .mapCanvas{min-width:1120px}
+  .mapQuickNav{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:760px){
   .app{padding:10px 10px calc(168px + env(safe-area-inset-bottom))}
@@ -877,12 +1369,32 @@ body[data-route="care"] .routeScreen.active .brandBox{
   .brandBox{padding:16px;align-items:flex-start}
   .brandBox>div{min-width:0}
   .brandLogo{width:62px;height:62px}.titleMain{font-size:1.58rem}.titleSub{font-size:.76rem;letter-spacing:.08em}
+  #phishing .missionTitle,
+  #genericMission .missionTitle{padding:18px}
+  #phishing .timerCard,
+  #genericMission .timerCard{padding:18px}
+  #phishing .titleMain,
+  #genericMission .titleMain,
+  #privacy .titleMain,
+  #finalChallenge .titleMain{font-size:1.55rem!important}
+  #phishing .brandLogo,
+  #genericMission .brandLogo,
+  #privacy .brandLogo,
+  #finalChallenge .brandLogo{width:54px!important;height:54px!important}
   .routeSpotlight{padding:16px;gap:12px}
   .routeSpotlightHead h3{font-size:1.45rem}
   .routeSpotlightHead p{font-size:.96rem;line-height:1.42}
   .routeSpotlightStats{display:grid;grid-template-columns:1fr;gap:8px}
+  .routeSectionNav{grid-template-columns:repeat(2,minmax(0,1fr));position:static}
   .mobileSectionNav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
   .mobileSectionNav .btn{min-height:60px;padding:12px 10px;font-size:.98rem}
+  .homeUtilityPanel,.sharePanelGrid{grid-template-columns:1fr}
+  .homeUtilityPanel{padding:18px}
+  .shareCardMain h3{font-size:1.45rem}
+  .shareCardMain p,.shareHint{font-size:.96rem}
+  .shareUrlInput{font-size:16px}
+  .qrFrame{width:min(100%,220px)}
+  .mapBoardNav{grid-template-columns:repeat(2,minmax(0,1fr))}
   .mapQuickNav{grid-template-columns:1fr}
   .heroChar{width:96px}.heroChar.blue{width:110px}
   .bottomNav{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
@@ -931,6 +1443,18 @@ body[data-route="care"] .routeScreen.active .brandBox{
   #genericMission .dynamicFooter{order:4}
   #genericMission .missionTopicChips{gap:6px}
   #genericMission .missionTopicChip{font-size:.76rem;padding:7px 10px}
+  #phishing .rightChoice,#genericMission .rightChoice,#phishing .leftEvidence,#genericMission .leftEvidence{padding:14px}
+  .dynamicMissionLayout .scenarioPanel{min-height:auto;padding:18px;gap:14px}
+  .dynamicMissionLayout .scenarioTop{grid-template-columns:68px 1fr;gap:12px}
+  .dynamicMissionLayout .scenarioIcon{width:64px;height:64px;border-radius:18px;font-size:2.2rem}
+  .dynamicMissionLayout .scenarioPanel h3{font-size:1.42rem}
+  .dynamicMissionLayout .scenarioPanel p{font-size:.98rem;line-height:1.42}
+  .dynamicMissionLayout .storyStage{grid-template-columns:64px 1fr;padding:14px}
+  .dynamicMissionLayout .storyAvatar{width:62px;height:62px;border-radius:20px;font-size:1.9rem}
+  .dynamicMissionLayout .storyText b{font-size:1.04rem}
+  .dynamicMissionLayout .storyText p{font-size:.94rem}
+  .dynamicMissionLayout .storyStep{min-height:auto;padding:12px 12px 12px 44px}
+  .dynamicMissionLayout .bigChoice{min-height:84px;padding:14px 14px}
   .mailHead,.scenarioTop,.profileHeader{grid-template-columns:1fr;gap:10px}
   .profileHeader{justify-items:center;text-align:center}
   .bigProfile{width:104px;height:104px;font-size:3.5rem}
@@ -943,17 +1467,17 @@ body[data-route="care"] .routeScreen.active .brandBox{
   .mailAvatar{width:52px;height:52px}
   .mailMeta{font-size:1rem}
   .dangerChip{justify-self:start}
-  .rewardLine{font-size:1.45rem;flex-wrap:wrap}
-  .bigChoice{font-size:1.08rem;padding:18px;min-height:104px}
+  .rewardLine{font-size:1.14rem;flex-wrap:wrap}
+  .bigChoice{font-size:.94rem;padding:11px 12px;min-height:74px}
   .tipBox{grid-template-columns:1fr;justify-items:start}
-  .tipBox .avatar{width:56px;height:56px;font-size:2rem}
-  .step{width:42px;height:42px}
+  .tipBox .avatar{width:46px;height:46px;font-size:1.45rem}
+  .step{width:36px;height:36px}
   .cta{font-size:1.12rem;padding:16px 18px}
   .footerBar{grid-template-columns:1fr}
-  .scenarioPanel{min-height:auto;padding:16px;border-radius:22px}
-  .scenarioIcon{width:76px;height:76px;font-size:3rem}
-  .scenarioPanel h3{font-size:1.45rem}
-  .scenarioPanel p{font-size:1rem}
+  .scenarioPanel{min-height:auto;padding:14px;border-radius:18px}
+  .scenarioIcon{width:64px;height:64px;font-size:2.25rem}
+  .scenarioPanel h3{font-size:1.26rem}
+  .scenarioPanel p{font-size:.92rem}
   .finalQuestion h3{font-size:1.45rem}
   .finalQuestion p{font-size:1rem}
   .finalOption{padding:16px;font-size:1rem}
@@ -969,7 +1493,7 @@ body[data-route="care"] .routeScreen.active .brandBox{
   .evIcon{width:42px;height:42px;font-size:1.05rem}
   .evText b{font-size:.88rem}
   .evText span{font-size:.82rem;line-height:1.25}
-  .bigChoice small{font-size:.92rem}
+  .bigChoice small{font-size:.8rem}
   .learnChecklist{grid-template-columns:1fr}
   .kidGuideRow{grid-template-columns:1fr}
   .routeTile p,.resourceItem span{display:block!important;font-size:.94rem;line-height:1.36}
@@ -1002,9 +1526,24 @@ body[data-route="care"] .routeScreen.active .brandBox{
   .choiceSet{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:100%}
   .chip{flex:none;width:100%}
   .mobileSectionNav{grid-template-columns:1fr}
+  .shareActionRow{display:grid;grid-template-columns:1fr}
+  .shareActionRow .btn{width:100%}
   .routeSpotlightHead p{font-size:.92rem}
   .catalogTools,.catalogHeader,.audioInline,.audioRowTop,.reportActions,.missionCardActions{display:grid;grid-template-columns:1fr}
   .audioInline .btn,.audioRowTop .btn,.missionCardActions .btn,.reportActions .btn,.catalogTools .btn{width:100%}
+  .homeUtilityPanel{padding:16px}
+  .qrCard{padding:14px}
+  .qrFrame{width:min(100%,200px);padding:10px}
+  .shareCardMain h3{font-size:1.28rem}
+  .shareCardMain p,.shareHint,.audioRow span{font-size:.92rem}
+  .dynamicMissionLayout .scenarioPanel{padding:14px;border-radius:20px}
+  .dynamicMissionLayout .scenarioTop{grid-template-columns:56px 1fr}
+  .dynamicMissionLayout .scenarioIcon{width:56px;height:56px;font-size:2rem}
+  .dynamicMissionLayout .scenarioPanel h3{font-size:1.25rem}
+  .dynamicMissionLayout .scenarioPanel p{font-size:.92rem}
+  .bigChoiceTop{align-items:flex-start}
+  .choiceBadge{width:34px;height:34px;border-radius:12px}
+  .choiceText{font-size:.96rem}
   #genericMission .missionTitle{padding:16px}
   #genericMission .timerCard{padding:16px}
   #genericMission .sectionTag{font-size:.7rem}
@@ -1018,31 +1557,31 @@ body[data-route="care"] .routeScreen.active .brandBox{
 }
 
 /* Nuevas misiones jugables */
-.dynamicMissionLayout{display:grid;grid-template-columns:minmax(260px,.82fr) minmax(0,1.55fr) minmax(320px,1fr);gap:14px;align-items:start}
-.dynamicCenter{padding:16px}
+.dynamicMissionLayout{display:grid;grid-template-columns:minmax(210px,.72fr) minmax(0,1.38fr) minmax(240px,.78fr);gap:12px;align-items:start}
+.dynamicCenter{padding:14px}
 .scenarioPanel{
-  min-height:520px;border-radius:24px;padding:22px;display:grid;gap:18px;align-content:start;
+  min-height:420px;border-radius:20px;padding:16px;display:grid;gap:14px;align-content:start;
   background:
     radial-gradient(circle at 15% 10%, rgba(62,175,255,.18), transparent 25%),
     radial-gradient(circle at 85% 90%, rgba(168,85,247,.14), transparent 25%),
     linear-gradient(180deg,#f5f8ff,#e9f0ff);
-  color:#102246;border:4px solid rgba(62,175,255,.28);
+  color:#102246;border:2px solid rgba(62,175,255,.24);
 }
-.scenarioTop{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:center}
+.scenarioTop{display:grid;grid-template-columns:78px 1fr;gap:14px;align-items:center}
 .scenarioIcon{
-  width:100px;height:100px;border-radius:28px;display:grid;place-items:center;font-size:4rem;
-  background:linear-gradient(180deg,#0f66ff,#143384);color:#fff;box-shadow:0 16px 34px rgba(20,70,160,.22);
+  width:76px;height:76px;border-radius:22px;display:grid;place-items:center;font-size:2.8rem;
+  background:linear-gradient(180deg,#0f66ff,#143384);color:#fff;box-shadow:0 12px 24px rgba(20,70,160,.18);
 }
-.scenarioPanel h3{margin:0;font-size:2rem;color:#102246}
-.scenarioPanel p{margin:0;font-size:1.14rem;line-height:1.48;color:#33446b}
+.scenarioPanel h3{margin:0;font-size:1.46rem;color:#102246;line-height:1.14}
+.scenarioPanel p{margin:0;font-size:.98rem;line-height:1.36;color:#33446b}
 .scenarioCards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .scenarioCard{
-  border-radius:18px;padding:16px;background:#fff;border:2px solid rgba(59,99,180,.12);
-  box-shadow:0 12px 24px rgba(12,31,70,.08);display:grid;gap:8px;
+  border-radius:16px;padding:12px;background:#fff;border:1px solid rgba(59,99,180,.12);
+  box-shadow:0 8px 18px rgba(12,31,70,.07);display:grid;gap:6px;min-height:88px;
 }
-.scenarioCard b{font-size:1.05rem;color:#102246}.scenarioCard span{color:#4b5f86;line-height:1.35}
-.scenarioWarning{padding:14px;border-radius:18px;background:#fff1cd;color:#694900;border:2px solid #ffdf7a;font-weight:900}
-.dynamicFooter{grid-column:1/-1;display:grid;grid-template-columns:1fr .8fr 1fr;gap:14px}
+.scenarioCard b{font-size:.96rem;color:#102246}.scenarioCard span{color:#4b5f86;line-height:1.28;font-size:.88rem}
+.scenarioWarning{padding:10px 12px;border-radius:15px;background:#fff1cd;color:#694900;border:1px solid #ffdf7a;font-weight:900;font-size:.88rem}
+.dynamicFooter{grid-column:1/-1;display:grid;grid-template-columns:1fr .72fr .95fr;gap:12px}
 body[data-route="care"] #genericMission.active .scenarioPanel{
   background:
     radial-gradient(circle at 15% 10%, rgba(255,208,39,.16), transparent 25%),
@@ -1130,9 +1669,13 @@ body[data-route="care"] #genericMission.active .choicePanel{
 }
 .finalOptions{display:grid;gap:12px}
 .finalOption{
-  padding:18px;border-radius:20px;border:2px solid rgba(19,74,170,.15);background:#fff;color:#14244b;text-align:left;font-weight:1000;
-  display:grid;gap:10px;box-shadow:0 14px 28px rgba(18,38,75,.08);cursor:pointer;
+  padding:18px 18px 18px 22px;border-radius:22px;border:2px solid rgba(19,74,170,.15);background:#fff;color:#14244b;text-align:left;font-weight:1000;
+  display:grid;gap:10px;box-shadow:0 14px 28px rgba(18,38,75,.08);cursor:pointer;position:relative;overflow:hidden;
   transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease
+}
+.finalOption::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:8px;
+  background:linear-gradient(180deg,#53ddff,#2563ff)
 }
 .finalOption:hover{
   transform:translateY(-2px);border-color:rgba(34,151,255,.42);
@@ -1140,8 +1683,11 @@ body[data-route="care"] #genericMission.active .choicePanel{
 }
 .finalOption:disabled{cursor:default;transform:none}
 .finalOption .choiceBadge{
-  background:linear-gradient(180deg,#0f66ff,#143384);color:#fff;border-color:rgba(15,102,255,.24)
+  width:40px;height:40px;border-radius:14px;
+  background:linear-gradient(180deg,#0f66ff,#143384);color:#fff;border-color:rgba(15,102,255,.24);
+  box-shadow:0 8px 18px rgba(29,78,216,.22)
 }
+.finalOption .choiceText{font-size:1.06rem;line-height:1.22}
 .finalOption small{display:block;font-size:.95rem;color:#56709e;line-height:1.35}
 .finalOption.successChoice{border-color:rgba(34,197,94,.55);background:linear-gradient(180deg,#f1fff6,#dff9ea);box-shadow:0 0 0 3px rgba(34,197,94,.14)}
 .finalOption.errorChoice{border-color:rgba(239,68,68,.48);background:linear-gradient(180deg,#fff3f5,#ffe1e7);box-shadow:0 0 0 3px rgba(239,68,68,.12)}
@@ -1284,6 +1830,7 @@ body[data-route="care"] #genericMission.active .choicePanel{
   padding:16px;border-radius:20px;background:rgba(255,255,255,.08);
   border:1px solid rgba(116,205,255,.18);display:grid;gap:10px
 }
+.audioRow span{color:#d7e7ff;line-height:1.42}
 .audioRowTop{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
 .audioSlider{width:100%;accent-color:#29d7ff}
 .audioInline{display:flex;gap:10px;flex-wrap:wrap}
@@ -1380,6 +1927,27 @@ body[data-route="care"] #genericMission.active .choicePanel{
         <div class="routeTile routeCyber"><div class="ico">🛡️</div><h3>Cyber</h3><p>Internet, celular y riesgos digitales.</p><button class="btn" onclick="showScreen('map')">Entrar a cyber</button></div>
         <div class="routeTile routeCare"><div class="ico">🧭</div><h3>Trata</h3><p>Señales de alerta, cuidado y pedido de ayuda.</p><button class="btn" onclick="showScreen('antiTraffickingHub')">Entrar a trata</button></div>
       </div>
+
+      <div class="panel homeUtilityPanel">
+        <div class="shareCardMain">
+          <div class="heroEyebrow">Listo para celular</div>
+          <h3>Abrí y compartí el juego con QR</h3>
+          <p>Si ya tenés un link público, pegalo acá y el juego arma un QR para abrirlo rápido desde otro celular o tablet.</p>
+          <input class="shareUrlInput" data-share-input placeholder="Pegá el link público del juego" oninput="setShareUrl(this.value)" />
+          <div class="shareActionRow">
+            <button class="btn green" onclick="shareGame()">Compartir juego</button>
+            <button class="btn purple" onclick="copyShareLink()">Copiar link</button>
+            <button class="btn" onclick="previewVoiceGuide()">Probar voz guía</button>
+          </div>
+          <div class="shareHint" data-share-hint>Si abrís el juego como archivo local, primero subilo a un link web público para que el QR funcione en otros dispositivos.</div>
+        </div>
+        <div class="qrCard">
+          <b>QR del juego</b>
+          <div class="qrFrame" data-qr-frame>
+            <div class="qrPlaceholder">Pegá un link público para crear el QR.</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1407,7 +1975,7 @@ body[data-route="care"] #genericMission.active .choicePanel{
       <div class="panel iconBox">⚙️</div>
     </div>
 
-    <div class="panel routeSpotlight cyberSpotlight">
+    <div class="panel routeSpotlight cyberSpotlight" id="cyberZoneTop">
       <div class="routeSpotlightHead">
         <div class="routeEyebrow">Zona cyber</div>
         <h3>Juegos de internet y celular</h3>
@@ -1420,6 +1988,14 @@ body[data-route="care"] #genericMission.active .choicePanel{
       </div>
     </div>
 
+    <div class="routeSectionNav">
+      <button class="routeNavBtn" onclick="navigateCyberSection('cyberZoneTop')"><span>🏁 Inicio</span><small>Volver arriba</small></button>
+      <button class="routeNavBtn" onclick="navigateCyberSection('cyberMapBoard')"><span>🗺️ Mapa</span><small>Ver juegos</small></button>
+      <button class="routeNavBtn" onclick="navigateCyberSection('cyberProgressPanel')"><span>📈 Progreso</span><small>Tu avance</small></button>
+      <button class="routeNavBtn" onclick="navigateCyberSection('cyberCatalogSection')"><span>📚 Catálogo</span><small>Lista completa</small></button>
+      <button class="routeNavBtn primary" onclick="launchNextMission('digital')"><span>▶ Seguir</span><small>Próximo juego</small></button>
+    </div>
+
     <div class="mobileSectionNav">
       <button class="btn" onclick="showScreen('map')">🛡️ Juegos</button>
       <button class="btn" onclick="launchNextMission('digital')">▶ Seguir</button>
@@ -1428,12 +2004,12 @@ body[data-route="care"] #genericMission.active .choicePanel{
 
     <div class="mapLayout">
       <div class="mobileMissionList" id="mobileMissionListBox"></div>
-      <div class="panel mapMain">
+      <div class="panel mapMain" id="cyberMapBoard">
         <div class="mapCanvas" id="desktopMissionMap"></div>
       </div>
 
       <div class="sidebar">
-        <div class="panel sideCard">
+        <div class="panel sideCard" id="cyberProgressPanel">
           <div style="font-size:2rem;font-weight:1000;text-align:center">TU AVANCE CYBER</div>
           <div class="ring"><div><span id="progressCount">4/33</span></div></div>
           <div style="text-align:center;font-size:1.4rem;font-weight:1000"><span id="completedTxt">4</span>/<span data-digital-missions>20</span> juegos cyber completados</div>
@@ -1449,11 +2025,10 @@ body[data-route="care"] #genericMission.active .choicePanel{
 
     <div class="mapQuickNav">
       <button class="btn yellow" onclick="launchNextMission('digital')">CONTINUAR CYBER</button>
-      <button class="btn" onclick="showScreen('cyberMaterialsHub')">APRENDER CYBER</button>
       <button class="btn purple" onclick="showScreen('home')">VOLVER AL INICIO</button>
     </div>
 
-    <div class="catalogSection">
+    <div class="catalogSection" id="cyberCatalogSection">
       <div class="panel catalogBar">
         <div class="catalogHeader">
           <div>
@@ -1687,6 +2262,15 @@ body[data-route="care"] #genericMission.active .choicePanel{
               <p id="dynScenarioText">Leé con atención y tomá una decisión.</p>
             </div>
           </div>
+          <div class="storyStage">
+            <div class="storyAvatar" id="dynStoryAvatar">🧠</div>
+            <div class="storyText">
+              <span class="storyLabel">Historia guiada</span>
+              <b id="dynStoryHook">Primero entendé qué está pasando.</b>
+              <p id="dynStorySupport">Mirá la escena, buscá la señal rara y después elegí cómo cuidarte mejor.</p>
+            </div>
+          </div>
+          <div class="storyFlow" id="dynStoryFlow"></div>
           <div class="scenarioCards" id="dynCards"></div>
           <div class="scenarioWarning" id="dynWarning">Pensá antes de hacer clic.</div>
         </div>
@@ -2312,8 +2896,11 @@ state.playerName = state.playerName || 'Alex Guardián';
 state.difficulty = state.difficulty || 'normal';
 state.sound = typeof state.sound === 'boolean' ? state.sound : true;
 state.music = typeof state.music === 'boolean' ? state.music : true;
+state.voiceGuide = typeof state.voiceGuide === 'boolean' ? state.voiceGuide : true;
 state.musicVolume = typeof state.musicVolume === 'number' ? state.musicVolume : 0.22;
 state.sfxVolume = typeof state.sfxVolume === 'number' ? state.sfxVolume : 0.45;
+state.voiceRate = typeof state.voiceRate === 'number' ? state.voiceRate : 0.98;
+state.shareUrl = state.shareUrl || '';
 state.finalBest = state.finalBest || 0;
 state.teacherNotes = state.teacherNotes || '';
 state.cyberNotes = state.cyberNotes || state.teacherNotes || '';
@@ -2337,6 +2924,7 @@ let sfxMasterGain = null;
 let musicMasterGain = null;
 let musicLoopHandle = null;
 let musicLoopMode = 'ambient';
+let voiceGuideTimer = null;
 const privacyCorrectConfig = {private:'SI', location:'NO', stories:'Amigos', comments:'Amigos', personal:'NO'};
 const privacySettingLabels = {private:'Cuenta privada', location:'Ubicación', stories:'Historias', comments:'Comentarios', personal:'Información personal'};
 const privacyDefaultConfig = {private:'NO', location:'SI', stories:'Todos', comments:'Todos', personal:'SI'};
@@ -2505,6 +3093,7 @@ function getNextMissionKey(track='all'){
 function openMissionByKey(key){
   const meta = getMissionMeta(key);
   if(!meta) return;
+  beep('mission');
   if(meta.kind === 'screen') openMission(key);
   else openDynamicMission(key);
 }
@@ -2561,23 +3150,40 @@ function renderDesktopMissionMap(){
   const box = document.getElementById('desktopMissionMap');
   if(!box) return;
   const nextKey = getNextMissionKey('digital');
-  const entries = digitalMissionKeys.slice(0,digitalMapLayout.length).map((key,index) => {
+  const nodeWidth = 168;
+  const orbSize = 82;
+  const baseWidth = box.clientWidth || 1120;
+  const cols = baseWidth >= 1500 ? 6 : baseWidth >= 1180 ? 5 : 4;
+  const rows = Math.ceil(digitalMissionKeys.length / cols);
+  const horizontalPadding = 18;
+  const topPadding = 88;
+  const colWidth = 192;
+  const rowHeight = 248;
+  const canvasWidth = Math.max(baseWidth, horizontalPadding * 2 + cols * colWidth);
+  const entries = digitalMissionKeys.map((key,index) => {
     const meta = getMissionMeta(key);
-    const layout = digitalMapLayout[index];
     const palette = digitalMapPalette[index % digitalMapPalette.length];
+    const tags = missionShortMeta[key] || [meta.kicker || 'Ruta cyber', meta.objective || 'Elegí una respuesta segura.'];
+    const row = Math.floor(index / cols);
+    const colInRow = index % cols;
+    const visualCol = row % 2 === 0 ? colInRow : cols - 1 - colInRow;
+    const left = Math.round(horizontalPadding + visualCol * colWidth + (colWidth - nodeWidth) / 2);
+    const top = Math.round(topPadding + row * rowHeight);
     return {
       key,
       meta,
-      left: layout.left,
-      top: layout.top,
+      left,
+      top,
       color: palette[0],
       bg: palette[1],
       done: !!state.completed[key],
-      isNext: key === nextKey
+      isNext: key === nextKey,
+      tag: tags[0],
+      hint: meta.blurb
     };
   });
-  const mapHeight = Math.max(...entries.map(entry => entry.top)) + 220;
-  const pathD = buildMapPath(entries.map(entry => ({x:entry.left + 64, y:entry.top + 64})));
+  const mapHeight = topPadding + Math.max(1, rows - 1) * rowHeight + 320;
+  const pathD = buildMapPath(entries.map(entry => ({x:entry.left + (nodeWidth / 2), y:entry.top + (orbSize / 2)})));
   box.style.minHeight = `${mapHeight}px`;
   box.innerHTML = `
     <div class="mapToolbar">
@@ -2591,17 +3197,19 @@ function renderDesktopMissionMap(){
         <span class="summaryItem">▶ ${getMissionMeta(nextKey)?.label || 'Empezar'}</span>
       </div>
     </div>
-    <svg class="route" viewBox="0 0 1200 ${mapHeight}" preserveAspectRatio="none">
+    <svg class="route" viewBox="0 0 ${canvasWidth} ${mapHeight}" preserveAspectRatio="none">
       <path d="${pathD}" fill="none" stroke="#59c7ff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
       <path d="${pathD}" fill="none" stroke="rgba(136,225,255,.22)" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     ${entries.map((entry,index) => `
       <div class="missionNode ${entry.done ? 'nodeDone' : entry.isNext ? 'nodeCurrent' : ''}" style="left:${entry.left}px;top:${entry.top}px">
         <button class="nodeOrb" style="color:${entry.color};background-color:${entry.bg}" onclick="openMissionByKey('${entry.key}')">${entry.meta.icon}</button>
-        <div class="nodeCard">
+        <button type="button" class="nodeCard" onclick="openMissionByKey('${entry.key}')">
           <div class="nodeTop"><span class="nodeStep">${index + 1}</span><span class="nodeStars ${entry.done ? 'done' : entry.isNext ? 'current' : 'pending'}">${entry.done ? 'Hecho' : entry.isNext ? 'Sigue' : `XP +${entry.meta.xp}`}</span></div>
           <b class="nodeTitle">${entry.meta.label}</b>
-        </div>
+          <div class="nodeHint">${entry.hint}</div>
+          <div class="nodeMetaLine"><span class="nodeChip">${entry.tag}</span><span class="nodeAction">${entry.done ? 'Podés repetir' : entry.isNext ? 'Tocá para jugar' : 'Listo para aprender'}</span></div>
+        </button>
       </div>`).join('')}
   `;
 }
@@ -2616,6 +3224,11 @@ function getScreenRoute(screenId){
   if(['antiTraffickingHub','careMaterialsHub'].includes(screenId)) return 'care';
   if(screenId === 'genericMission' && currentMission?.key) return missionMeta[currentMission.key]?.track || 'neutral';
   return 'neutral';
+}
+function navigateCyberSection(sectionId){
+  const el = document.getElementById(sectionId);
+  if(!el) return;
+  el.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 // Tema visual del avatar elegido: se replica en fichas, perfil y portada.
@@ -2726,6 +3339,12 @@ function syncUI(){
   if(sfxSlider) sfxSlider.value = Math.round(state.sfxVolume*100);
   const musicSlider=document.getElementById('musicSlider');
   if(musicSlider) musicSlider.value = Math.round(state.musicVolume*100);
+  const voiceBtn=document.getElementById('voiceToggle');
+  if(voiceBtn){voiceBtn.textContent=state.voiceGuide?'Activada':'Desactivada';voiceBtn.classList.toggle('on',state.voiceGuide);}
+  const voiceValue=document.getElementById('voiceRateValue');
+  if(voiceValue) voiceValue.textContent = `${Math.round(state.voiceRate*100)}%`;
+  const voiceSlider=document.getElementById('voiceRateSlider');
+  if(voiceSlider) voiceSlider.value = Math.round(state.voiceRate*100);
   syncAudioState();
   const cyberNotes=document.getElementById('cyberNotes');
   if(cyberNotes && !cyberNotes.value) cyberNotes.value = state.cyberNotes || '';
@@ -2744,6 +3363,7 @@ function syncUI(){
   renderInventory();
   updateComboBubble();
   refreshFloatingUI();
+  renderShareWidgets();
 }
 
 // Motor de audio local.
@@ -2777,6 +3397,8 @@ function syncAudioState(){
 }
 function getMusicMode(){
   if(currentScreen === 'home') return 'home';
+  if(currentScreen === 'map') return 'cyberMap';
+  if(currentScreen === 'cyberMaterialsHub') return 'learn';
   if(['antiTraffickingHub','careMaterialsHub'].includes(currentScreen)) return 'care';
   if(currentScreen === 'finalChallenge') return 'final';
   if(['map','phishing','genericMission','privacy'].includes(currentScreen)) return 'game';
@@ -2860,6 +3482,40 @@ function playGameMusicCycle(){
     scheduleTone(musicMasterGain, chord[2], offset + .72, .22, 'triangle', .012);
   });
 }
+function playCyberMapMusicCycle(){
+  if(!audioCtx || !state.music) return;
+  const chords = [
+    [261.63, 329.63, 392.0],
+    [293.66, 369.99, 440.0],
+    [246.94, 329.63, 392.0],
+    [220.0, 293.66, 349.23]
+  ];
+  chords.forEach((chord,index) => {
+    const offset = index * 1.02;
+    schedulePad(musicMasterGain, chord, offset, 1.48, .016);
+    scheduleTone(musicMasterGain, chord[0], offset, .14, 'triangle', .011);
+    scheduleTone(musicMasterGain, chord[1], offset + .2, .13, 'triangle', .01);
+    scheduleTone(musicMasterGain, chord[2], offset + .42, .15, 'sine', .013);
+    scheduleTone(musicMasterGain, chord[1], offset + .66, .12, 'triangle', .01);
+    scheduleTone(musicMasterGain, chord[2] * 2, offset + .86, .11, 'sine', .009);
+  });
+}
+function playLearnMusicCycle(){
+  if(!audioCtx || !state.music) return;
+  const phrases = [
+    [523.25, 659.25, 783.99],
+    [493.88, 659.25, 739.99],
+    [440.0, 587.33, 698.46],
+    [493.88, 587.33, 659.25]
+  ];
+  phrases.forEach((phrase,index) => {
+    const offset = index * 1.08;
+    schedulePad(musicMasterGain, [phrase[0] / 2, phrase[1] / 2, phrase[2] / 2], offset, 1.7, .012);
+    scheduleTone(musicMasterGain, phrase[0], offset + .05, .15, 'triangle', .01);
+    scheduleTone(musicMasterGain, phrase[1], offset + .32, .15, 'triangle', .011);
+    scheduleTone(musicMasterGain, phrase[2], offset + .62, .18, 'sine', .012);
+  });
+}
 function playCareMusicCycle(){
   if(!audioCtx || !state.music) return;
   const chords = [
@@ -2900,6 +3556,18 @@ function playAchievementJingle(){
   scheduleTone(sfxMasterGain, 783.99, .24, .22, 'triangle', .08);
   scheduleTone(sfxMasterGain, 1046.5, .4, .34, 'sine', .09);
 }
+function playMissionStartJingle(){
+  if(!state.sound || !ensureAudioSystem()) return;
+  scheduleTone(sfxMasterGain, 349.23, 0, .1, 'triangle', .045);
+  scheduleTone(sfxMasterGain, 523.25, .09, .13, 'sine', .055);
+  scheduleTone(sfxMasterGain, 698.46, .2, .16, 'triangle', .06);
+}
+function playHintSparkle(){
+  if(!state.sound || !ensureAudioSystem()) return;
+  scheduleTone(sfxMasterGain, 783.99, 0, .09, 'triangle', .04);
+  scheduleTone(sfxMasterGain, 987.77, .06, .1, 'sine', .045);
+  scheduleTone(sfxMasterGain, 1174.66, .12, .12, 'triangle', .05);
+}
 function startBackgroundMusic(){
   if(!ensureAudioSystem()) return;
   const targetMode = getMusicMode();
@@ -2909,6 +3577,8 @@ function startBackgroundMusic(){
   const cycleMap = {
     ambient: playAmbientMusicCycle,
     home: playHomeMusicCycle,
+    cyberMap: playCyberMapMusicCycle,
+    learn: playLearnMusicCycle,
     game: playGameMusicCycle,
     care: playCareMusicCycle,
     final: playFinalMusicCycle
@@ -2916,6 +3586,8 @@ function startBackgroundMusic(){
   const intervalMap = {
     ambient: 5400,
     home: 5200,
+    cyberMap: 4200,
+    learn: 4600,
     game: 4400,
     care: 5200,
     final: 3900
@@ -2958,16 +3630,28 @@ function previewAudio(type='ui'){
     beep('ui');
     return;
   }
+  if(type === 'hint'){
+    beep('hint');
+    return;
+  }
+  if(type === 'spark'){
+    beep('spark');
+    return;
+  }
   if(type === 'phoenix'){
     beep('phoenix');
     return;
   }
   if(type === 'music'){
-    playGameMusicCycle();
+    playCyberMapMusicCycle();
     return;
   }
   if(type === 'home'){
     playHomeMusicCycle();
+    return;
+  }
+  if(type === 'learn'){
+    playLearnMusicCycle();
     return;
   }
   if(type === 'care'){
@@ -2998,6 +3682,9 @@ function showScreen(id){
   updateDock();
   refreshFloatingUI();
   syncAudioState();
+  if(changed && id === 'home') queueVoiceGuide('Bienvenido a CyberGuardian 2026. Elegí una zona, tocá continuar o escaneá el código QR para abrir el juego en otro celular.');
+  if(changed && id === 'map') queueVoiceGuide('Mapa cyber abierto. Tocá una misión para aprender a cuidarte en internet, con el celular y frente a engaños digitales.');
+  if(changed && id === 'antiTraffickingHub') queueVoiceGuide('Zona trata abierta. Tocá una misión para reconocer señales de riesgo, pedir ayuda y actuar con más cuidado.');
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -3126,16 +3813,22 @@ function initPhishingMission(){
   document.getElementById('phishingSafeBtn').innerHTML = `<span class="bigChoiceTop"><span class="choiceBadge">B</span><span class="choiceText">ES SEGURO</span></span><small>Elegila solo si no encontrás señales de peligro.</small>`;
   document.getElementById('feedbackPhishing').innerHTML = `<div class="feedbackLead"><div style="font-size:1.5rem;font-weight:1000;color:#3dd4ff">RETROALIMENTACIÓN</div><b>Buscá pistas antes de decidir.</b></div><p>Marcá las señales sospechosas y después elegí si el correo es seguro o phishing.</p>`;
   updatePhishingUI();
+  queueVoiceGuide('Nueva misión. Detector de correos sospechosos. Marcá las señales raras y después elegí si el correo es seguro o phishing.');
 }
 function togglePhishingClue(clue){
   if(phishingSolved) return;
   phishingFound.add(clue);
+  beep('spark');
   updatePhishingUI();
-  if(phishingFound.size === phishingRequiredClues) notify('Ya reuniste pistas suficientes para decidir.');
+  if(phishingFound.size === phishingRequiredClues){
+    beep('hint');
+    notify('Ya reuniste pistas suficientes para decidir.');
+  }
 }
 function setPrivacyChoice(key, value){
   privacySelections[key] = value;
   privacyChecked = false;
+  beep('spark');
   updatePrivacyUI();
 }
 function updatePrivacyUI(){
@@ -3181,6 +3874,7 @@ function initPrivacyMission(){
   const submit = document.getElementById('privacySubmit');
   if(submit){ submit.disabled = false; submit.textContent = 'VERIFICAR CONFIGURACIÓN ▶'; }
   updatePrivacyUI();
+  queueVoiceGuide('Misión de privacidad. Ajustá la cuenta para mostrar menos datos y elegir las opciones más seguras.');
 }
 function renderHomeResume(){
   const primary = document.getElementById('resumePrimary');
@@ -3954,6 +4648,142 @@ function shuffleChoices(list){
   return copy;
 }
 
+function buildStoryFlow(track){
+  return track === 'care'
+    ? [
+        ['1','Mirá la señal','Buscá secreto, control, regalos raros o pedidos de documentos.'],
+        ['2','Pensá el riesgo','Fijate si alguien puede quedar aislado, presionado o sin ayuda.'],
+        ['3','Elegí cuidar','La mejor respuesta protege y busca ayuda sin exponerse.']
+      ]
+    : [
+        ['1','Mirá la pista','Buscá links raros, pedidos de datos, apuro o engaño.'],
+        ['2','Pensá un segundo','Preguntate qué opción cuida mejor tu cuenta, tus datos o tu bienestar.'],
+        ['3','Elegí seguro','Tocá la respuesta que expone menos y protege más.']
+      ];
+}
+
+function buildOptionHelperText(track){
+  return track === 'care'
+    ? 'Pensá si esta respuesta cuida, frena el riesgo y busca ayuda.'
+    : 'Pensá si esta respuesta protege tus datos, tu cuenta o tu bienestar.';
+}
+
+function hasPublicShareUrl(url){
+  return /^https?:\/\//i.test((url || '').trim());
+}
+function getResolvedShareUrl(){
+  const customUrl = (state.shareUrl || '').trim();
+  if(hasPublicShareUrl(customUrl)) return customUrl;
+  const currentUrl = window.location.href || '';
+  return hasPublicShareUrl(currentUrl) ? currentUrl : '';
+}
+function buildQrImageUrl(url){
+  return `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(url)}`;
+}
+function renderShareWidgets(){
+  const url = getResolvedShareUrl();
+  const message = url
+    ? `QR listo para abrir el juego desde otro celular: ${url}`
+    : 'Si abrís el juego como archivo local, primero subilo a un link web público para que el QR funcione en otros dispositivos.';
+  document.querySelectorAll('[data-share-input]').forEach(input => {
+    if(input !== document.activeElement) input.value = state.shareUrl || url || '';
+  });
+  document.querySelectorAll('[data-share-hint]').forEach(el => el.textContent = message);
+  document.querySelectorAll('[data-qr-frame]').forEach(frame => {
+    frame.innerHTML = url
+      ? `<img src="${buildQrImageUrl(url)}" alt="QR del juego" />`
+      : `<div class="qrPlaceholder">Pegá un link público para crear el QR.</div>`;
+  });
+}
+function setShareUrl(value){
+  state.shareUrl = (value || '').trim();
+  save();
+  renderShareWidgets();
+}
+function copyShareLink(){
+  const url = getResolvedShareUrl();
+  if(!url){
+    notify('Pegá primero un link público del juego para poder copiarlo.');
+    return;
+  }
+  navigator.clipboard?.writeText(url);
+  notify('Link del juego copiado.');
+}
+function shareGame(){
+  const url = getResolvedShareUrl();
+  if(!url){
+    notify('Necesitás un link público del juego para compartirlo.');
+    return;
+  }
+  if(navigator.share){
+    navigator.share({title:'CyberGuardian 2026', text:'Jugá CyberGuardian 2026', url}).catch(()=>{});
+    return;
+  }
+  copyShareLink();
+}
+function openShareLink(){
+  const url = getResolvedShareUrl();
+  if(!url){
+    notify('Pegá un link público del juego para poder abrirlo.');
+    return;
+  }
+  window.open(url, '_blank', 'noopener');
+}
+function canUseVoiceGuide(){
+  return 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+}
+function getGuideVoice(){
+  if(!canUseVoiceGuide()) return null;
+  const voices = window.speechSynthesis.getVoices();
+  return voices.find(voice => /es-AR/i.test(voice.lang))
+    || voices.find(voice => /es-(ES|MX|US)/i.test(voice.lang))
+    || voices.find(voice => /^es/i.test(voice.lang))
+    || voices[0]
+    || null;
+}
+function stopVoiceGuide(){
+  clearTimeout(voiceGuideTimer);
+  if(canUseVoiceGuide()) window.speechSynthesis.cancel();
+}
+function speakGuide(text, options={}){
+  const {force=false, rate=state.voiceRate, pitch=1.04} = options;
+  if((!state.voiceGuide && !force) || !canUseVoiceGuide() || !text) return false;
+  stopVoiceGuide();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'es-AR';
+  utterance.rate = rate;
+  utterance.pitch = pitch;
+  const voice = getGuideVoice();
+  if(voice) utterance.voice = voice;
+  window.speechSynthesis.speak(utterance);
+  return true;
+}
+function queueVoiceGuide(text, delay=240){
+  if(!state.voiceGuide || !text) return;
+  clearTimeout(voiceGuideTimer);
+  voiceGuideTimer = window.setTimeout(() => speakGuide(text), delay);
+}
+function toggleVoiceGuide(){
+  state.voiceGuide = !state.voiceGuide;
+  if(!state.voiceGuide) stopVoiceGuide();
+  save();
+  syncUI();
+  notify(state.voiceGuide ? 'Voz guía activada.' : 'Voz guía desactivada.');
+}
+function setVoiceRate(value){
+  state.voiceRate = Math.max(0.78, Math.min(1.3, Number(value) / 100));
+  save();
+  syncUI();
+}
+function previewVoiceGuide(){
+  const sample = currentMission
+    ? `${currentMission.title}. ${currentMission.objective}. ${currentMission.question}`
+    : 'Hola. Soy tu voz guía. Mirá con calma, pensá un segundo y elegí la opción que más te cuida.';
+  if(!speakGuide(sample, {force:true})){
+    notify('Este navegador no permite voz guía automática.');
+  }
+}
+
 // Carga una misión dinámica y rellena todos los bloques visuales desde datos.
 function openDynamicMission(key){
   currentMission = dynamicMissions[key];
@@ -3988,6 +4818,13 @@ function openDynamicMission(key){
   document.getElementById('dynHelperTitle').textContent = currentTrack === 'care' ? 'Consejo de cuidado' : 'CyberConsejo';
   document.getElementById('dynScenarioTitle').textContent = currentMission.scenarioTitle;
   document.getElementById('dynScenarioText').textContent = currentMission.scenarioText;
+  document.getElementById('dynStoryAvatar').textContent = currentTrack === 'care' ? '🧭' : '🧠';
+  document.getElementById('dynStoryHook').textContent = currentTrack === 'care'
+    ? 'Primero mirá si alguien está quedando en riesgo.'
+    : 'Primero mirá qué parte de la situación puede engañar o exponer.';
+  document.getElementById('dynStorySupport').textContent = currentTrack === 'care'
+    ? 'Leé la historia como una señal de cuidado: mirá el riesgo, frená el apuro y buscá ayuda segura.'
+    : 'Leé la historia como detective digital: encontrá la pista rara, frená el apuro y elegí con calma.';
   document.getElementById('dynQuestion').textContent = currentMission.question;
   document.getElementById('dynAdvice').textContent = currentMission.tip;
   document.getElementById('dynWarning').textContent = currentMission.warning;
@@ -4002,6 +4839,12 @@ function openDynamicMission(key){
     ? ['¿Hay una señal de secreto, control o apuro?','¿La opción te deja con más ayuda y más cuidado?','¿Evita que te expongas o que vayas solo?']
     : ['¿Pide datos, códigos o contraseña?','¿El mensaje busca que toques ya sin pensar?','¿La opción elegida protege mejor tus datos o tu cuenta?']);
   document.getElementById('dynDecisionHints').innerHTML = decisionHints.map((hint,index) => `<div class="decisionHint"><span>${index+1}</span><span>${hint}</span></div>`).join('');
+  document.getElementById('dynStoryFlow').innerHTML = (currentMission.storyFlow || buildStoryFlow(currentTrack)).map(step => `
+    <div class="storyStep">
+      <div class="storyStepIndex">${step[0]}</div>
+      <b>${step[1]}</b>
+      <span>${step[2]}</span>
+    </div>`).join('');
   document.getElementById('dynReward').textContent = `⭐ +${currentMission.xp} XP`;
   document.getElementById('dynRewardCoins').textContent = `🪙 +${currentMission.coins}`;
   document.getElementById('dynLearnSteps').innerHTML = (currentMission.learnSteps || [
@@ -4015,12 +4858,20 @@ function openDynamicMission(key){
       <div class="evText"><b>${e[1]}</b><span>${e[2]}</span></div>
       <div class="evCount">1</div>
     </div>`).join('');
-  document.getElementById('dynCards').innerHTML = currentMission.cards.map(c=>`
-    <div class="scenarioCard"><b>${c[0]}</b><span>${c[1]}</span></div>`).join('');
+  document.getElementById('dynCards').innerHTML = currentMission.cards.map((c,index)=>`
+    <div class="scenarioCard">
+      <div class="scenarioCardTop">
+        <span class="scenarioCardIndex">${index + 1}</span>
+        <span class="scenarioCardTag">${index === currentMission.cards.length - 1 ? 'Qué hacer' : 'Pista clave'}</span>
+      </div>
+      <b>${c[0]}</b>
+      <span>${c[1]}</span>
+    </div>`).join('');
   document.getElementById('dynOptions').innerHTML = currentMission.shuffledOptions.map((o,idx)=>`
-    <button class="bigChoice" onclick="answerDynamic(${idx})"><span class="bigChoiceTop"><span class="choiceBadge">${String.fromCharCode(65+idx)}</span><span class="choiceText">${o.text}</span></span><small>Tocá para responder</small></button>`).join('');
-  document.getElementById('dynFeedback').innerHTML = `<div class="feedbackLead"><div style="font-size:1.5rem;font-weight:1000;color:#3dd4ff">RETROALIMENTACIÓN</div><b>Tu decisión se explica acá.</b></div><p>Elegí una opción para recibir una explicación.</p><div class="coachBubble"><b>Tip rápido</b>Si dudás, elegí la respuesta que cuida más y expone menos.</div>`;
+    <button class="bigChoice" onclick="answerDynamic(${idx})"><span class="bigChoiceTop"><span class="choiceBadge">${String.fromCharCode(65+idx)}</span><span class="choiceText">${o.text}</span></span><small>${buildOptionHelperText(currentTrack)}</small></button>`).join('');
+  document.getElementById('dynFeedback').innerHTML = `<div class="feedbackLead"><div style="font-size:1.5rem;font-weight:1000;color:#3dd4ff">RETROALIMENTACIÓN</div><b>Acá te explicamos la mejor respuesta.</b></div><p>Elegí una opción para ver por qué una decisión cuida más que otra.</p><div class="coachBubble"><b>Tip rápido</b>Si dudás, elegí la respuesta que cuida más y expone menos.</div>`;
   showScreen('genericMission');
+  queueVoiceGuide(`${currentMission.title}. ${currentMission.objective}. ${currentMission.question}`);
 }
 
 // Resuelve la opción seleccionada, aplica premio o pérdida de vida y ofrece continuidad.
@@ -4037,8 +4888,8 @@ function answerDynamic(index){
     const first = rewardMission(currentMission.key, currentMission.xp, currentMission.coins);
     buttons.forEach(btn => btn.disabled = true);
     selectedButton?.classList.add('successChoice');
-    if(selectedButton) selectedButton.innerHTML = `<span class="bigChoiceTop"><span class="choiceBadge">${String.fromCharCode(65+index)}</span><span class="choiceText">${currentMission.shuffledOptions[index].text}</span></span><small>Respuesta correcta</small>`;
-    box.innerHTML = `<div class="feedbackLead"><div style="font-size:1.5rem;font-weight:1000;color:#3dd4ff">RETROALIMENTACIÓN</div><b>Muy bien: elegiste la opción más segura.</b></div><p><b>¡Correcto!</b> ${currentMission.good}</p><div class="coachBubble"><b>Qué mirar la próxima vez</b>Seguí buscando la señal más importante y elegí siempre la respuesta que más cuide.</div><div class="missionActionRow"><button class="btn yellow" onclick="launchNextMission(currentMission.key && missionMeta[currentMission.key].track==='care' ? 'care' : 'digital')">Siguiente juego</button><button class="btn" onclick="showScreen(missionMeta[currentMission.key].track==='care' ? 'antiTraffickingHub' : 'map')">Volver</button></div>`;
+    if(selectedButton) selectedButton.innerHTML = `<span class="bigChoiceTop"><span class="choiceBadge">${String.fromCharCode(65+index)}</span><span class="choiceText">${currentMission.shuffledOptions[index].text}</span></span><small>Muy bien: esta respuesta cuidaba más</small>`;
+    box.innerHTML = `<div class="feedbackLead"><div style="font-size:1.5rem;font-weight:1000;color:#3dd4ff">RETROALIMENTACIÓN</div><b>Muy bien: elegiste la opción más segura.</b></div><p><b>¿Por qué estaba bien?</b> ${currentMission.good}</p><div class="coachBubble"><b>Qué aprender de esta historia</b>Seguí buscando la señal más importante y elegí siempre la respuesta que más cuide.</div><div class="missionActionRow"><button class="btn yellow" onclick="launchNextMission(currentMission.key && missionMeta[currentMission.key].track==='care' ? 'care' : 'digital')">Siguiente juego</button><button class="btn" onclick="showScreen(missionMeta[currentMission.key].track==='care' ? 'antiTraffickingHub' : 'map')">Volver</button></div>`;
     notify(first ? `¡Ganaste +${currentMission.xp} XP y +${currentMission.coins} monedas!` : 'Esta misión ya fue completada.');
   }else{
     recordWrong();
@@ -4047,15 +4898,15 @@ function answerDynamic(index){
     if(selectedButton){
       selectedButton.disabled = true;
       selectedButton.classList.add('errorChoice');
-      selectedButton.innerHTML = `<span class="bigChoiceTop"><span class="choiceBadge">${String.fromCharCode(65+index)}</span><span class="choiceText">${currentMission.shuffledOptions[index].text}</span></span><small>Tu respuesta fue incorrecta</small>`;
+      selectedButton.innerHTML = `<span class="bigChoiceTop"><span class="choiceBadge">${String.fromCharCode(65+index)}</span><span class="choiceText">${currentMission.shuffledOptions[index].text}</span></span><small>Esta opción no cuidaba lo suficiente</small>`;
     }
     const correctIndex = currentMission.shuffledOptions.findIndex(option => option.correct);
     const correctButton = buttons[correctIndex];
     if(correctButton){
       correctButton.classList.add('successChoice');
-      correctButton.innerHTML = `<span class="bigChoiceTop"><span class="choiceBadge">${String.fromCharCode(65+correctIndex)}</span><span class="choiceText">${currentMission.shuffledOptions[correctIndex].text}</span></span><small>Esta era la correcta</small>`;
+      correctButton.innerHTML = `<span class="bigChoiceTop"><span class="choiceBadge">${String.fromCharCode(65+correctIndex)}</span><span class="choiceText">${currentMission.shuffledOptions[correctIndex].text}</span></span><small>Esta respuesta cuidaba mejor</small>`;
     }
-    box.innerHTML = `<div class="feedbackLead"><div style="font-size:1.5rem;font-weight:1000;color:#3dd4ff">RETROALIMENTACIÓN</div><b>Esta vez no era la mejor opción.</b></div><p><b>Revisá de nuevo:</b> ${currentMission.bad}</p><div class="coachBubble"><b>Probá otra vez</b>Mirá la señal más fuerte y tocá la opción que más te cuide.</div><p><b>Seguí jugando:</b> mirá las pistas y tocá otra respuesta para aprender con calma.</p>`;
+    box.innerHTML = `<div class="feedbackLead"><div style="font-size:1.5rem;font-weight:1000;color:#3dd4ff">RETROALIMENTACIÓN</div><b>Esta vez esa opción no cuidaba tanto.</b></div><p><b>¿Qué conviene recordar?</b> ${currentMission.bad}</p><div class="coachBubble"><b>Probá otra vez</b>Mirá la señal más fuerte y tocá la opción que más te cuide.</div><p><b>Seguí aprendiendo:</b> leé las pistas con calma y elegí otra respuesta.</p>`;
     notify('Perdiste 1 vida. Leé las pistas y probá otra opción.');
   }
 }
@@ -4065,6 +4916,19 @@ function answerDynamic(index){
 function beep(type='ok'){
   if(!state.sound) return;
   if(!ensureAudioSystem()) return;
+  if(type === 'mission'){
+    playMissionStartJingle();
+    return;
+  }
+  if(type === 'hint'){
+    playHintSparkle();
+    return;
+  }
+  if(type === 'spark'){
+    scheduleTone(sfxMasterGain, 659.25, 0, .07, 'triangle', .03);
+    scheduleTone(sfxMasterGain, 783.99, .05, .08, 'sine', .034);
+    return;
+  }
   if(type === 'phoenix'){
     scheduleTone(sfxMasterGain, 523.25, 0, .12, 'triangle', .06);
     scheduleTone(sfxMasterGain, 783.99, .08, .16, 'sine', .075);
@@ -4111,6 +4975,12 @@ document.addEventListener('click', e=>{
 });
 document.addEventListener('input', e=>{
   if(e.target.id === 'missionSearchInput') renderMissionCatalog();
+});
+window.addEventListener('resize', ()=>{
+  clearTimeout(window.cyberMapResizeTimer);
+  window.cyberMapResizeTimer = setTimeout(()=>{
+    if(currentScreen === 'map') renderDesktopMissionMap();
+  }, 120);
 });
 
 // Persistencia de notas por temática para mantener separadas cyber y trata.
@@ -4260,6 +5130,7 @@ function renderFinalQuestion(){
   document.getElementById('finalOptions').innerHTML=finalCurrentOptions.map((option,i)=>renderFinalOption(option,i,'Tocá para responder')).join('');
   renderFinalBadges(meta);
   finalAnswered=false;
+  queueVoiceGuide(`Reto final. ${item.q}`);
 }
 function answerFinal(i){
   if(finalAnswered) return;
@@ -4404,13 +5275,29 @@ function renderUltra(tab){
         <div class="audioRowTop"><b>Efectos de juego</b><button class="btn" id="soundToggle" onclick="toggleSound()">${state.sound?'Activado':'Desactivado'}</button></div>
         <span>Controla respuestas correctas, errores, recompensas y acciones rápidas.</span>
         <input class="audioSlider" id="sfxSlider" type="range" min="0" max="80" step="1" value="${Math.round(state.sfxVolume*100)}" oninput="setSfxVolume(this.value)" />
-        <div class="audioInline"><span>Volumen: <b id="sfxValue">${Math.round(state.sfxVolume*100)}%</b></span><button class="btn purple" onclick="previewAudio('ok')">Probar acierto</button><button class="btn" onclick="previewAudio('ui')">Probar toque UI</button><button class="btn yellow" onclick="previewAudio('phoenix')">Probar Fénix</button></div>
+        <div class="audioInline"><span>Volumen: <b id="sfxValue">${Math.round(state.sfxVolume*100)}%</b></span><button class="btn purple" onclick="previewAudio('ok')">Probar acierto</button><button class="btn" onclick="previewAudio('ui')">Probar toque UI</button><button class="btn green" onclick="previewAudio('hint')">Probar pista</button><button class="btn" onclick="previewAudio('spark')">Probar descubrimiento</button><button class="btn yellow" onclick="previewAudio('phoenix')">Probar Fénix</button></div>
       </div>
       <div class="audioRow">
         <div class="audioRowTop"><b>Música ambiente</b><button class="btn green" id="musicToggle" onclick="toggleMusic()">${state.music?'Activada':'Desactivada'}</button></div>
         <span>Ahora el juego alterna entre música de inicio, biblioteca, cyber, trata y reto final para que cada pantalla tenga más identidad.</span>
         <input class="audioSlider" id="musicSlider" type="range" min="0" max="60" step="1" value="${Math.round(state.musicVolume*100)}" oninput="setMusicVolume(this.value)" />
-        <div class="audioInline"><span>Volumen: <b id="musicValue">${Math.round(state.musicVolume*100)}%</b></span><button class="btn purple" onclick="previewAudio('music')">Probar cyber</button><button class="btn" onclick="previewAudio('care')">Probar trata</button><button class="btn green" onclick="previewAudio('home')">Probar inicio</button><button class="btn yellow" onclick="previewAudio('final')">Probar reto final</button><button class="btn purple" onclick="previewAudio('achievement')">Probar logro</button></div>
+        <div class="audioInline"><span>Volumen: <b id="musicValue">${Math.round(state.musicVolume*100)}%</b></span><button class="btn purple" onclick="previewAudio('music')">Probar mapa cyber</button><button class="btn" onclick="previewAudio('learn')">Probar aprender</button><button class="btn" onclick="previewAudio('care')">Probar trata</button><button class="btn green" onclick="previewAudio('home')">Probar inicio</button><button class="btn yellow" onclick="previewAudio('final')">Probar reto final</button><button class="btn purple" onclick="previewAudio('achievement')">Probar logro</button></div>
+      </div>
+      <div class="audioRow">
+        <div class="audioRowTop"><b>Voz guía moderna</b><button class="btn purple" id="voiceToggle" onclick="toggleVoiceGuide()">${state.voiceGuide?'Activada':'Desactivada'}</button></div>
+        <span>Lee objetivos, preguntas y aperturas de misiones con una voz breve para acompañar mejor a niñas, niños y uso en celular.</span>
+        <input class="audioSlider" id="voiceRateSlider" type="range" min="78" max="130" step="1" value="${Math.round(state.voiceRate*100)}" oninput="setVoiceRate(this.value)" />
+        <div class="audioInline"><span>Velocidad: <b id="voiceRateValue">${Math.round(state.voiceRate*100)}%</b></span><button class="btn green" onclick="previewVoiceGuide()">Probar voz guía</button><button class="btn" onclick="stopVoiceGuide()">Detener voz</button></div>
+      </div>
+      <div class="audioRow">
+        <div class="audioRowTop"><b>QR del juego</b><button class="btn green" onclick="shareGame()">Compartir</button></div>
+        <span>Usá un link público para generar el QR y abrir el juego desde otro celular, tablet o compu.</span>
+        <input class="shareUrlInput" data-share-input placeholder="Pegá el link público del juego" oninput="setShareUrl(this.value)" />
+        <div class="sharePanelGrid">
+          <div class="shareHint" data-share-hint>Si todavía abrís el juego como archivo local, primero necesitás un link web público.</div>
+          <div class="qrFrame" data-qr-frame><div class="qrPlaceholder">Pegá un link público para crear el QR.</div></div>
+        </div>
+        <div class="shareActionRow"><button class="btn purple" onclick="copyShareLink()">Copiar link</button><button class="btn" onclick="openShareLink()">Abrir link</button></div>
       </div>
     </div>`;
     syncUI();
