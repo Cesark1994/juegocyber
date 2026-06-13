@@ -7595,6 +7595,8 @@ body.modalOpen{
    - Avatares, ayudas cortas y conteos globales
    ========================================================= */
 const storageKey = 'cyberguardian-capturas-state-v3';
+const publicGameUrl = 'https://cesark1994.github.io/juegocyber/';
+const publicQrImage = 'qr_juegocyber.png';
 
 // Catálogo maestro de misiones.
 // Cada entrada define etiqueta, ruta, tipo de juego, premio y logro asociado.
@@ -7682,7 +7684,7 @@ if(state.audioFixVersion !== 4){
   state.audioFixVersion = 4;
   localStorage.setItem(storageKey, JSON.stringify(state));
 }
-state.shareUrl = state.shareUrl || '';
+state.shareUrl = state.shareUrl || publicGameUrl;
 state.finalBest = state.finalBest || 0;
 state.teacherNotes = state.teacherNotes || '';
 state.cyberNotes = state.cyberNotes || state.teacherNotes || '';
@@ -8280,6 +8282,31 @@ function schedulePad(targetGain, frequencies, whenOffset=.0, duration=2.2, peak=
     osc.stop(when + duration + .05);
   });
 }
+function getMusicVariant(count=3){
+  if(!audioCtx) return 0;
+  return Math.floor(audioCtx.currentTime / 4.5) % count;
+}
+function scheduleMelody(notes, whenOffset=.0, step=.24, type='triangle', peak=.012){
+  if(!audioCtx || !musicMasterGain) return;
+  notes.forEach((frequency,index) => {
+    if(!frequency) return;
+    scheduleTone(musicMasterGain, frequency, whenOffset + index * step, Math.min(.22, step * .76), type, peak);
+  });
+}
+function scheduleBellTrail(notes, whenOffset=.0, step=.3, peak=.012){
+  notes.forEach((frequency,index) => {
+    if(!frequency) return;
+    const offset = whenOffset + index * step;
+    scheduleTone(musicMasterGain, frequency, offset, .18, 'sine', peak);
+    scheduleTone(musicMasterGain, frequency * 2, offset + .035, .08, 'triangle', peak * .45);
+  });
+}
+function scheduleSoftPulse(root, whenOffset=.0, repeats=4, step=.48, peak=.01){
+  for(let index=0; index<repeats; index++){
+    scheduleTone(musicMasterGain, root, whenOffset + index * step, .12, 'triangle', peak);
+    if(index % 2 === 1) scheduleTone(musicMasterGain, root * 1.5, whenOffset + index * step + .08, .1, 'sine', peak * .7);
+  }
+}
 function playAmbientMusicCycle(){
   if(!audioCtx || !state.music) return;
   const chords = [
@@ -8294,6 +8321,13 @@ function playAmbientMusicCycle(){
     scheduleTone(musicMasterGain, chord[0] / 2, offset, .5, 'sine', .014);
     scheduleTone(musicMasterGain, chord[1], offset + .68, .22, 'triangle', .01);
   });
+  const melodies = [
+    [329.63,392.0,493.88,440.0,392.0,329.63],
+    [293.66,349.23,440.0,392.0,329.63,293.66],
+    [261.63,329.63,392.0,493.88,392.0,329.63]
+  ];
+  scheduleBellTrail(melodies[getMusicVariant(melodies.length)], .28, .42, .009);
+  scheduleSoftPulse(110, .12, 6, .68, .008);
 }
 function playHomeMusicCycle(){
   if(!audioCtx || !state.music) return;
@@ -8309,6 +8343,13 @@ function playHomeMusicCycle(){
     scheduleTone(musicMasterGain, chord[0], offset + .14, .24, 'triangle', .011);
     scheduleTone(musicMasterGain, chord[2], offset + .84, .26, 'sine', .013);
   });
+  const melodies = [
+    [523.25,659.25,783.99,659.25,880.0,783.99,659.25],
+    [392.0,523.25,587.33,659.25,587.33,523.25,392.0],
+    [440.0,554.37,659.25,739.99,659.25,554.37,440.0]
+  ];
+  scheduleBellTrail(melodies[getMusicVariant(melodies.length)], .18, .26, .014);
+  scheduleSoftPulse(130.81, 0, 7, .5, .009);
 }
 function playGameMusicCycle(){
   if(!audioCtx || !state.music) return;
@@ -8325,6 +8366,13 @@ function playGameMusicCycle(){
     scheduleTone(musicMasterGain, chord[0] / 2, offset + .34, .16, 'square', .011);
     scheduleTone(musicMasterGain, chord[2], offset + .72, .22, 'triangle', .012);
   });
+  const riffs = [
+    [369.99,493.88,587.33,493.88,739.99,587.33],
+    [329.63,392.0,493.88,587.33,493.88,392.0],
+    [293.66,369.99,440.0,554.37,440.0,369.99]
+  ];
+  scheduleMelody(riffs[getMusicVariant(riffs.length)], .12, .2, 'triangle', .013);
+  scheduleSoftPulse(123.47, .08, 8, .34, .009);
 }
 function playCyberMapMusicCycle(){
   if(!audioCtx || !state.music) return;
@@ -8343,6 +8391,13 @@ function playCyberMapMusicCycle(){
     scheduleTone(musicMasterGain, chord[1], offset + .66, .12, 'triangle', .01);
     scheduleTone(musicMasterGain, chord[2] * 2, offset + .86, .11, 'sine', .009);
   });
+  const melodies = [
+    [659.25,783.99,987.77,880.0,783.99,659.25,587.33],
+    [523.25,659.25,783.99,1046.5,783.99,659.25,523.25],
+    [587.33,739.99,880.0,987.77,880.0,739.99,587.33]
+  ];
+  scheduleBellTrail(melodies[getMusicVariant(melodies.length)], .12, .2, .011);
+  scheduleSoftPulse(130.81, .04, 8, .25, .008);
 }
 function playLearnMusicCycle(){
   if(!audioCtx || !state.music) return;
@@ -8359,6 +8414,13 @@ function playLearnMusicCycle(){
     scheduleTone(musicMasterGain, phrase[1], offset + .32, .15, 'triangle', .011);
     scheduleTone(musicMasterGain, phrase[2], offset + .62, .18, 'sine', .012);
   });
+  const melodies = [
+    [783.99,659.25,587.33,659.25,783.99,880.0],
+    [698.46,587.33,523.25,587.33,698.46,783.99],
+    [659.25,739.99,659.25,554.37,659.25,739.99]
+  ];
+  scheduleBellTrail(melodies[getMusicVariant(melodies.length)], .22, .34, .01);
+  scheduleSoftPulse(164.81, .18, 5, .72, .007);
 }
 function playCareMusicCycle(){
   if(!audioCtx || !state.music) return;
@@ -8375,6 +8437,13 @@ function playCareMusicCycle(){
     scheduleTone(musicMasterGain, chord[1], offset + .52, .18, 'triangle', .009);
     scheduleTone(musicMasterGain, chord[2], offset + .92, .24, 'triangle', .01);
   });
+  const melodies = [
+    [392.0,440.0,523.25,493.88,440.0,392.0],
+    [349.23,392.0,493.88,440.0,392.0,349.23],
+    [329.63,392.0,440.0,523.25,440.0,392.0]
+  ];
+  scheduleBellTrail(melodies[getMusicVariant(melodies.length)], .36, .42, .009);
+  scheduleSoftPulse(98.0, .08, 6, .72, .008);
 }
 function playFinalMusicCycle(){
   if(!audioCtx || !state.music) return;
@@ -8392,6 +8461,13 @@ function playFinalMusicCycle(){
     scheduleTone(musicMasterGain, chord[2], offset + .52, .18, 'sine', .014);
     scheduleTone(musicMasterGain, chord[2] * 2, offset + .78, .16, 'triangle', .01);
   });
+  const melodies = [
+    [523.25,659.25,783.99,1046.5,987.77,783.99,1046.5],
+    [587.33,739.99,880.0,1174.66,1046.5,880.0,1174.66],
+    [659.25,783.99,987.77,1318.51,1174.66,987.77,1318.51]
+  ];
+  scheduleBellTrail(melodies[getMusicVariant(melodies.length)], .06, .18, .014);
+  scheduleSoftPulse(130.81, 0, 8, .24, .01);
 }
 function playAchievementJingle(){
   if(!state.sound || !ensureAudioSystem()) return;
@@ -10030,9 +10106,10 @@ function getResolvedShareUrl(){
   const customUrl = (state.shareUrl || '').trim();
   if(hasPublicShareUrl(customUrl)) return customUrl;
   const currentUrl = window.location.href || '';
-  return hasPublicShareUrl(currentUrl) ? currentUrl : '';
+  return hasPublicShareUrl(currentUrl) ? currentUrl : publicGameUrl;
 }
 function buildQrImageUrl(url){
+  if((url || '').trim().replace(/\/?$/, '/') === publicGameUrl) return publicQrImage;
   return `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(url)}`;
 }
 function renderShareWidgets(){

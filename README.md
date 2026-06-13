@@ -1,6 +1,6 @@
 # juegocyber
 
-Juego educativo interactivo sobre ciberseguridad y prevención de la trata de personas.
+Juego educativo interactivo sobre ciberseguridad y cuidado personal para niños y jóvenes.
 
 ## Publicación web
 
@@ -12,3 +12,8 @@ Juego educativo interactivo sobre ciberseguridad y prevención de la trata de pe
 Si GitHub Pages está habilitado en este repositorio, el sitio se abre desde:
 
 `https://cesark1994.github.io/juegocyber/`
+
+## QR para compartir
+
+- `qr_juegocyber.png`: QR limpio para usar dentro del juego o imprimir.
+- `qr_juegocyber_compartir.png`: tarjeta lista para enviar por WhatsApp, imprimir o proyectar.
