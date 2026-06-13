@@ -6244,6 +6244,128 @@ body[data-route="care"] #genericMission.active .choicePanel{
   }
 }
 
+/* Capa moderna para juegos en escritorio/tablet. Mobile queda protegido abajo. */
+@media (min-width:761px){
+  #genericMission.active,
+  #phishing.active,
+  #privacy.active,
+  #finalChallenge.active{
+    max-width:1240px;
+    margin-inline:auto;
+  }
+  #genericMission.active .missionTitle,
+  #phishing.active .missionTitle,
+  #privacy.active .titleBlock,
+  #finalChallenge.active .titleBlock{
+    border-radius:32px !important;
+    background:
+      radial-gradient(circle at 8% 0%, rgba(101,233,255,.25), transparent 28%),
+      radial-gradient(circle at 94% 10%, rgba(255,208,39,.14), transparent 24%),
+      linear-gradient(135deg,rgba(24,82,162,.96),rgba(14,43,112,.98) 58%,rgba(9,55,62,.96)) !important;
+    border-color:rgba(132,211,255,.34) !important;
+    box-shadow:0 24px 70px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.13) !important;
+  }
+  #genericMission.active .dynamicMissionLayout,
+  #phishing.active .missionLayout{
+    gap:18px !important;
+  }
+  #genericMission.active .scenarioPanel,
+  #phishing.active .mailPanel{
+    border-radius:34px !important;
+    background:
+      radial-gradient(circle at 12% 2%, rgba(101,233,255,.18), transparent 30%),
+      radial-gradient(circle at 88% 8%, rgba(255,208,39,.12), transparent 24%),
+      linear-gradient(145deg,rgba(255,255,255,.99),rgba(236,250,255,.95)) !important;
+    border:1px solid rgba(143,205,255,.42) !important;
+    box-shadow:0 26px 70px rgba(1,8,23,.34), inset 0 1px 0 rgba(255,255,255,.95) !important;
+  }
+  #genericMission.active .storyStage,
+  #genericMission.active .guidedCanvas,
+  #phishing.active .phishingVisual{
+    border-radius:28px !important;
+    border-color:rgba(65,180,255,.22) !important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.72), 0 16px 32px rgba(35,76,150,.12) !important;
+  }
+  #genericMission.active .kidGuideCard,
+  #genericMission.active .scenarioCard,
+  #genericMission.active .learnStep,
+  #phishing.active .mailActionButton{
+    border-radius:22px !important;
+    background:linear-gradient(180deg,rgba(255,255,255,.86),rgba(245,251,255,.78)) !important;
+    border-color:rgba(63,147,236,.18) !important;
+    box-shadow:0 12px 28px rgba(28,73,140,.08), inset 0 1px 0 rgba(255,255,255,.88) !important;
+  }
+  #genericMission.active .rightChoice,
+  #phishing.active .rightChoice{
+    border-radius:32px !important;
+    padding:18px !important;
+    background:
+      radial-gradient(circle at 92% 0%, rgba(101,233,255,.2), transparent 32%),
+      linear-gradient(180deg,rgba(25,57,123,.98),rgba(10,24,62,.98)) !important;
+    border-color:rgba(114,206,255,.36) !important;
+    box-shadow:0 24px 60px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.09) !important;
+  }
+  #genericMission.active .questionPrompt,
+  #phishing.active .questionPrompt{
+    background:rgba(255,255,255,.08) !important;
+    border-color:rgba(139,217,255,.24) !important;
+    border-radius:24px !important;
+  }
+  #genericMission.active .decisionGuide,
+  #phishing.active .decisionGuide{
+    background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.06)) !important;
+    border-color:rgba(139,217,255,.2) !important;
+    color:#ecf8ff !important;
+  }
+  #genericMission.active .bigChoice,
+  #phishing.active .bigChoice{
+    min-height:76px;
+    border-radius:24px !important;
+    background:
+      radial-gradient(circle at 0 50%, rgba(101,233,255,.2), transparent 30%),
+      linear-gradient(180deg,#2769df,#1745a8) !important;
+    border-color:rgba(139,217,255,.34) !important;
+    box-shadow:0 16px 32px rgba(12,57,158,.28), inset 0 1px 0 rgba(255,255,255,.18) !important;
+  }
+  #genericMission.active .bigChoice::after,
+  #phishing.active .bigChoice::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(110deg,transparent 0 38%,rgba(255,255,255,.18) 48%,transparent 58%);
+    transform:translateX(-120%);
+    transition:transform .45s ease;
+    pointer-events:none;
+  }
+  #genericMission.active .bigChoice:hover::after,
+  #phishing.active .bigChoice:hover::after{
+    transform:translateX(120%);
+  }
+  #genericMission.active .choiceBadge,
+  #phishing.active .choiceBadge{
+    width:42px;
+    height:42px;
+    border-radius:15px;
+    background:linear-gradient(180deg,#6be8ff,#2563eb) !important;
+  }
+  #genericMission.active .bigChoice.errorChoice,
+  #phishing.active .bigChoice.errorChoice{
+    background:linear-gradient(180deg,#ee6b7b,#a9273d) !important;
+  }
+  #genericMission.active .bigChoice.successChoice,
+  #phishing.active .bigChoice.successChoice{
+    background:linear-gradient(180deg,#2ed985,#138a4f) !important;
+  }
+  #genericMission.active .scenarioWarning,
+  #genericMission.active .inlineFeedback,
+  #phishing.active .phishingInlineFeedback{
+    border-radius:22px !important;
+    background:linear-gradient(180deg,#fff6cc,#ffeaa3) !important;
+    border-color:rgba(255,191,36,.48) !important;
+    color:#4a3200 !important;
+  }
+}
+
 /* Fix final para celulares reales: scroll táctil normal y catálogo más compacto. */
 @media (max-width:760px){
   html,
@@ -7586,6 +7708,7 @@ let musicLoopHandle = null;
 let musicLoopMode = 'ambient';
 let voiceGuideTimer = null;
 let audioUnlocked = false;
+let lastCelebrationAt = 0;
 const privacyCorrectConfig = {private:'SI', location:'NO', stories:'Amigos', comments:'Amigos', personal:'NO'};
 const privacySettingLabels = {private:'Cuenta privada', location:'Ubicación', stories:'Historias', comments:'Comentarios', personal:'Información personal'};
 const privacyDefaultConfig = {private:'NO', location:'SI', stories:'Todos', comments:'Todos', personal:'SI'};
@@ -8325,6 +8448,58 @@ function playFunnyTada(){
   scheduleNoisePop(sfxMasterGain, .42, .08, .04);
   scheduleNoisePop(sfxMasterGain, .5, .08, .035);
 }
+function playCoinChime(){
+  if(!state.sound || !ensureAudioSystem()) return;
+  scheduleTone(sfxMasterGain, 987.77, 0, .08, 'triangle', .045);
+  scheduleTone(sfxMasterGain, 1318.51, .07, .09, 'sine', .052);
+  scheduleTone(sfxMasterGain, 1760.0, .15, .12, 'triangle', .04);
+  scheduleNoisePop(sfxMasterGain, .08, .045, .018);
+}
+function playComboSpark(){
+  if(!state.sound || !ensureAudioSystem()) return;
+  scheduleTone(sfxMasterGain, 659.25, 0, .08, 'triangle', .044);
+  scheduleTone(sfxMasterGain, 880.0, .06, .1, 'triangle', .052);
+  scheduleTone(sfxMasterGain, 1174.66, .13, .12, 'sine', .058);
+  scheduleSweep(sfxMasterGain, 900, 1800, .2, .16, 'sine', .04);
+  scheduleNoisePop(sfxMasterGain, .18, .07, .026);
+}
+function playCorrectCelebration(){
+  if(!state.sound || !ensureAudioSystem()) return;
+  const nowMs = performance.now();
+  if(nowMs - lastCelebrationAt < 260) return;
+  lastCelebrationAt = nowMs;
+  scheduleTone(sfxMasterGain, 523.25, 0, .09, 'triangle', .052);
+  scheduleTone(sfxMasterGain, 659.25, .08, .1, 'triangle', .058);
+  scheduleTone(sfxMasterGain, 783.99, .16, .12, 'triangle', .064);
+  scheduleTone(sfxMasterGain, 1046.5, .27, .18, 'sine', .07);
+  scheduleTone(sfxMasterGain, 1318.51, .42, .16, 'triangle', .052);
+  scheduleSweep(sfxMasterGain, 600, 1600, .3, .24, 'sine', .038);
+  scheduleNoisePop(sfxMasterGain, .34, .065, .026);
+  scheduleNoisePop(sfxMasterGain, .48, .065, .022);
+}
+function playMissionCompleteFanfare(){
+  if(!state.sound || !ensureAudioSystem()) return;
+  playCorrectCelebration();
+  scheduleTone(sfxMasterGain, 392.0, .58, .12, 'triangle', .046);
+  scheduleTone(sfxMasterGain, 523.25, .68, .13, 'triangle', .052);
+  scheduleTone(sfxMasterGain, 659.25, .8, .14, 'triangle', .058);
+  scheduleTone(sfxMasterGain, 1046.5, .96, .28, 'sine', .07);
+  scheduleNoisePop(sfxMasterGain, .92, .08, .032);
+  scheduleNoisePop(sfxMasterGain, 1.02, .08, .03);
+  window.setTimeout(playCoinChime, 520);
+}
+function playRetryCue(){
+  if(!state.sound || !ensureAudioSystem()) return;
+  scheduleSweep(sfxMasterGain, 280, 150, 0, .16, 'sawtooth', .038);
+  scheduleTone(sfxMasterGain, 196.0, .18, .1, 'triangle', .026);
+  scheduleTone(sfxMasterGain, 293.66, .3, .09, 'sine', .024);
+}
+function playShieldCue(){
+  if(!state.sound || !ensureAudioSystem()) return;
+  scheduleTone(sfxMasterGain, 392.0, 0, .1, 'triangle', .045);
+  scheduleTone(sfxMasterGain, 587.33, .08, .12, 'sine', .05);
+  scheduleSweep(sfxMasterGain, 420, 920, .14, .22, 'triangle', .044);
+}
 function startBackgroundMusic(){
   if(!ensureAudioSystem()) return;
   const targetMode = getMusicMode();
@@ -8388,7 +8563,7 @@ function setSfxVolume(value){
 }
 function previewAudio(type='ui'){
   activateAudioNow(false);
-  if(['pop','boing','oops','tada','voice'].includes(type)){
+  if(['pop','boing','oops','tada','voice','celebrate','complete','coin','combo','retry','shield'].includes(type)){
     beep(type);
     return;
   }
@@ -8433,7 +8608,7 @@ function previewAudio(type='ui'){
     return;
   }
   if(type === 'achievement'){
-    playAchievementJingle();
+    playMissionCompleteFanfare();
     return;
   }
   beep(type === 'ok' ? 'ok' : type === 'bad' ? 'bad' : 'win');
@@ -8773,7 +8948,7 @@ function rewardMission(kind, xp, coins){
   state.stars = Math.min(maxStars, state.completedCount * 3);
   while(state.xp >= state.xpMax){state.xp -= state.xpMax; state.level += 1;}
   save();
-  playAchievementJingle();
+  playMissionCompleteFanfare();
   return true;
 }
 function answerPhishing(selectedIsPhishing){
@@ -8788,7 +8963,7 @@ function answerPhishing(selectedIsPhishing){
   if(correct){
     phishingSolved = true;
     recordCorrect();
-    beep('ok');
+    beep('celebrate');
     const first = rewardMission('phishing',20,50);
     disableButtons('#phishingDangerBtn, #phishingSafeBtn');
     document.getElementById('phishingDangerBtn')?.classList.add('successChoice');
@@ -8799,7 +8974,7 @@ function answerPhishing(selectedIsPhishing){
     notify(first ? '¡Ganaste +20 XP y +50 monedas!' : 'Esta misión ya fue completada.');
   }else{
     recordWrong();
-    beep('bad');
+    beep('retry');
     loseLife();
     document.getElementById('phishingSafeBtn')?.classList.add('errorChoice');
     document.getElementById('phishingSafeBtn').innerHTML = `<span class="bigChoiceTop"><span class="choiceBadge">B</span><span class="choiceText">ES SEGURO</span></span><small>Esta opción no cuidaba tus datos</small>`;
@@ -8813,7 +8988,7 @@ function completePrivacy(){
     privacyChecked = true;
     updatePrivacyUI();
     recordWrong();
-    beep('bad');
+    beep('retry');
     loseLife();
     const wrongItems = Object.keys(privacyCorrectConfig)
       .filter(key => privacySelections[key] !== privacyCorrectConfig[key])
@@ -8826,7 +9001,7 @@ function completePrivacy(){
   privacySolved = true;
   privacyChecked = true;
   updatePrivacyUI();
-  beep('ok');
+  beep('celebrate');
   recordCorrect();
   const first = rewardMission('privacy',150,100);
   document.getElementById('privacyFeedback').innerHTML = `<b>🛡️ Perfil protegido.</b> Muy buena configuración. Ahora menos personas pueden ver tu ubicación y tus datos.<div class="coachBubble"><b>Qué aprendiste</b>Una cuenta más cerrada muestra menos datos y cuida mejor tu rutina.</div><div class="missionActionRow"><button class="btn yellow" onclick="launchNextMission('digital')">Siguiente juego</button><button class="btn" onclick="showScreen('map')">Volver al mapa</button></div>`;
@@ -10187,7 +10362,7 @@ function answerDynamic(index){
   if(correct){
     dynamicSolved = true;
     recordCorrect();
-    beep('tada');
+    beep('celebrate');
     const first = rewardMission(currentMission.key, currentMission.xp, currentMission.coins);
     buttons.forEach(btn => btn.disabled = true);
     selectedButton?.classList.add('successChoice');
@@ -10198,7 +10373,7 @@ function answerDynamic(index){
     notify(first ? `¡Ganaste +${currentMission.xp} XP y +${currentMission.coins} monedas!` : 'Esta misión ya fue completada.');
   }else{
     recordWrong();
-    beep('oops');
+    beep('retry');
     loseLife();
     if(selectedButton){
       selectedButton.disabled = true;
@@ -10243,6 +10418,30 @@ function beep(type='ok'){
   }
   if(type === 'tada'){
     playFunnyTada();
+    return;
+  }
+  if(type === 'celebrate'){
+    playCorrectCelebration();
+    return;
+  }
+  if(type === 'complete'){
+    playMissionCompleteFanfare();
+    return;
+  }
+  if(type === 'coin'){
+    playCoinChime();
+    return;
+  }
+  if(type === 'combo'){
+    playComboSpark();
+    return;
+  }
+  if(type === 'retry'){
+    playRetryCue();
+    return;
+  }
+  if(type === 'shield'){
+    playShieldCue();
     return;
   }
   if(type === 'spark'){
@@ -10347,7 +10546,7 @@ function openAchievements(){
   }
   document.getElementById('achModalList').innerHTML=list.map(x=>`<div class="badgeItem ${x[3]?'':'locked'}"><div class="bico">${x[0]}</div><div><b>${x[1]}</b><span>${x[2]}</span></div><div>${x[3]?'✅':'🔒'}</div></div>`).join('');
   modal.classList.add('show');
-  playAchievementJingle();
+  beep('complete');
 }
 
 // Banco del reto final.
@@ -10476,7 +10675,7 @@ function answerFinal(i){
     buttons[i].classList.add('errorChoice');
     buttons[i].innerHTML = `<span class="bigChoiceTop"><span class="choiceBadge">${String.fromCharCode(65+i)}</span><span class="choiceText">${finalCurrentOptions[i].text}</span></span><small>Tu respuesta fue incorrecta</small>`;
   }
-  if(ok){finalScore++;recordCorrect();beep('ok');}else{recordWrong();loseLife();beep('bad');}
+  if(ok){finalScore++;recordCorrect();beep('celebrate');}else{recordWrong();loseLife();beep('retry');}
   document.getElementById('finalFeedback').innerHTML = ok
     ? `<div class="feedbackLead"><b>Muy bien: elegiste la opción más segura.</b></div><p><b>Correcto.</b> ${item.exp}</p>`
     : `<div class="feedbackLead"><b>Esta vez no era la mejor opción.</b></div><p><b>Revisá:</b> ${item.exp}</p>`;
@@ -10497,7 +10696,7 @@ function finishFinalChallenge(){
     while(state.xp >= state.xpMax){state.xp -= state.xpMax; state.level += 1;}
   }
   save();
-  beep(approved?'win':'bad');
+  beep(approved?'complete':'retry');
   document.getElementById('finalRouteTag').textContent='Resultado final';
   document.getElementById('finalQuestionTitle').textContent=approved?'¡Reto aprobado!':'Reto terminado';
   document.getElementById('finalQuestionText').textContent=approved?'Felicitaciones: ya podés imprimir tu certificado de Héroe Digital.':'Podés repetir el reto para mejorar tu puntaje.';
@@ -10550,14 +10749,24 @@ function updateComboBubble(){
 function recordCorrect(){
   state.correctAnswers=(state.correctAnswers||0)+1;
   state.combo=(state.combo||0)+1;
-  if(state.combo>0 && state.combo%3===0){state.coins+=25;powerToast('🔥 +25 monedas extra');}
+  if(state.combo>0 && state.combo%3===0){
+    state.coins+=25;
+    beep('combo');
+    powerToast('🔥 Combo x3: +25 monedas extra');
+  }
 }
 function recordWrong(){
   state.wrongAnswers=(state.wrongAnswers||0)+1;
   state.combo=0;
 }
 function loseLife(){
-  if(state.shieldActive){state.shieldActive=false;powerToast('🛡️ El escudo evitó perder una vida.');save();return;}
+  if(state.shieldActive){
+    state.shieldActive=false;
+    beep('shield');
+    powerToast('🛡️ El escudo evitó perder una vida.');
+    save();
+    return;
+  }
   state.lives=Math.max(0,state.lives-1);save();
 }
 
@@ -10567,7 +10776,7 @@ function buyPower(kind){
   if(state.coins < prices[kind]){notify('No tenés suficientes monedas.');return;}
   state.coins -= prices[kind];
   state.inventory[kind]=(state.inventory[kind]||0)+1;
-  save();beep('ok');powerToast('Compra realizada.');
+  save();beep('coin');powerToast('Compra realizada.');
 }
 function usePower(kind){
   if((state.inventory[kind]||0)<=0){notify('No tenés ese poder disponible.');return;}
@@ -10576,8 +10785,8 @@ function usePower(kind){
     const msg = currentMission?.tip || 'Consejo: revisá pistas, no compartas datos sensibles y pedí ayuda si algo parece raro.';
     notify('💡 '+msg);
   }
-  if(kind==='shield'){state.shieldActive=true;powerToast('🛡️ Escudo activado: evita perder una vida.');}
-  if(kind==='double'){state.doubleXP=true;powerToast('⚡ Bonus XP x2 activado para la próxima misión.');}
+  if(kind==='shield'){state.shieldActive=true;beep('shield');powerToast('🛡️ Escudo activado: evita perder una vida.');}
+  if(kind==='double'){state.doubleXP=true;beep('combo');powerToast('⚡ Bonus XP x2 activado para la próxima misión.');}
   save();
 }
 
@@ -10603,7 +10812,7 @@ function renderUltra(tab){
         <div class="audioRowTop"><b>Efectos de juego</b><button class="btn" id="soundToggle" onclick="toggleSound()">${state.sound?'Activado':'Desactivado'}</button></div>
         <span>Controla respuestas correctas, errores, recompensas y acciones rápidas.</span>
         <input class="audioSlider" id="sfxSlider" type="range" min="0" max="80" step="1" value="${Math.round(state.sfxVolume*100)}" oninput="setSfxVolume(this.value)" />
-        <div class="audioInline"><span>Volumen: <b id="sfxValue">${Math.round(state.sfxVolume*100)}%</b></span><button class="btn purple" onclick="previewAudio('pop')">Pop</button><button class="btn green" onclick="previewAudio('boing')">Boing</button><button class="btn yellow" onclick="previewAudio('tada')">Tada</button><button class="btn" onclick="previewAudio('oops')">Oops</button><button class="btn" onclick="previewAudio('hint')">Brillito</button><button class="btn purple" onclick="previewAudio('voice')">Voz</button></div>
+        <div class="audioInline"><span>Volumen: <b id="sfxValue">${Math.round(state.sfxVolume*100)}%</b></span><button class="btn yellow" onclick="previewAudio('celebrate')">Celebración</button><button class="btn green" onclick="previewAudio('complete')">Misión completa</button><button class="btn" onclick="previewAudio('coin')">Monedas</button><button class="btn purple" onclick="previewAudio('combo')">Combo</button><button class="btn" onclick="previewAudio('retry')">Intentar otra vez</button><button class="btn purple" onclick="previewAudio('pop')">Pop</button><button class="btn green" onclick="previewAudio('boing')">Boing</button><button class="btn yellow" onclick="previewAudio('tada')">Tada</button><button class="btn" onclick="previewAudio('oops')">Oops</button><button class="btn" onclick="previewAudio('hint')">Brillito</button><button class="btn purple" onclick="previewAudio('voice')">Voz</button></div>
       </div>
       <div class="audioRow">
         <div class="audioRowTop"><b>Música ambiente</b><button class="btn green" id="musicToggle" onclick="toggleMusic()">${state.music?'Activada':'Desactivada'}</button></div>
