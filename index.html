@@ -6244,6 +6244,309 @@ body[data-route="care"] #genericMission.active .choicePanel{
   }
 }
 
+/* Fix final para celulares reales: scroll táctil normal y catálogo más compacto. */
+@media (max-width:760px){
+  html,
+  body{
+    height:auto !important;
+    min-height:100% !important;
+    overflow-x:hidden !important;
+    overflow-y:auto !important;
+    overscroll-behavior-y:auto !important;
+    -webkit-overflow-scrolling:touch;
+    touch-action:pan-y;
+  }
+  body.modalOpen{
+    overflow:hidden !important;
+    touch-action:none;
+  }
+  .app,
+  .screen,
+  .screen.active,
+  #map,
+  #antiTraffickingHub,
+  .mapLayout,
+  .federalHubLayout,
+  .mobileMissionList,
+  .simpleMissionGrid{
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    overflow:visible !important;
+    touch-action:pan-y;
+  }
+  .app{
+    max-width:430px !important;
+    padding:10px 10px calc(108px + env(safe-area-inset-bottom)) !important;
+  }
+  #map .routeSpotlight,
+  #antiTraffickingHub .routeSpotlight,
+  #antiTraffickingHub .federalHubMain{
+    padding:16px !important;
+    border-radius:24px !important;
+  }
+  #map .routeEyebrow,
+  #antiTraffickingHub .routeEyebrow,
+  #antiTraffickingHub .alertPill{
+    font-size:.76rem !important;
+    padding:8px 12px !important;
+    letter-spacing:.06em !important;
+  }
+  #map .routeSpotlightHead h3,
+  #antiTraffickingHub .routeSpotlightHead h3,
+  #antiTraffickingHub .federalHubMain h2{
+    font-size:1.55rem !important;
+    line-height:1.08 !important;
+    letter-spacing:-.025em !important;
+  }
+  #map .routeSpotlightHead p,
+  #map .routeSpotlightStats,
+  #antiTraffickingHub .routeSpotlightHead p,
+  #antiTraffickingHub .federalHubMain > p{
+    display:none !important;
+  }
+  .mobileSectionNav{
+    position:sticky !important;
+    top:6px !important;
+    z-index:35 !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:7px !important;
+    padding:8px !important;
+    border-radius:22px !important;
+    background:rgba(5,17,40,.86) !important;
+  }
+  .mobileSectionNav .btn{
+    min-height:46px !important;
+    padding:8px 6px !important;
+    border-radius:16px !important;
+    font-size:.78rem !important;
+    line-height:1.05 !important;
+  }
+  .simpleMissionGrid{
+    grid-template-columns:1fr !important;
+    gap:10px !important;
+  }
+  .simpleMissionCard{
+    position:relative !important;
+    min-height:0 !important;
+    padding:14px !important;
+    border-radius:24px !important;
+    display:grid !important;
+    grid-template-columns:72px minmax(0,1fr) !important;
+    grid-template-areas:
+      "icon text"
+      "icon action" !important;
+    align-items:center !important;
+    gap:10px 12px !important;
+    background:
+      radial-gradient(circle at 100% 0%, rgba(69,150,255,.14), transparent 36%),
+      linear-gradient(145deg,#173a78,#102758) !important;
+  }
+  .simpleMissionCard.isNext{
+    border-color:rgba(255,224,79,.42) !important;
+    box-shadow:0 12px 26px rgba(0,0,0,.24), 0 0 0 1px rgba(255,224,79,.12) !important;
+  }
+  .simpleMissionTop{
+    grid-area:icon !important;
+    display:block !important;
+    min-width:0 !important;
+  }
+  .simpleMissionIcon{
+    width:62px !important;
+    height:62px !important;
+    border-radius:22px !important;
+    font-size:2rem !important;
+  }
+  .simpleMissionState{
+    position:absolute !important;
+    top:12px !important;
+    right:12px !important;
+    max-width:132px !important;
+    padding:7px 10px !important;
+    font-size:.68rem !important;
+    color:#eaf7ff !important;
+    background:rgba(7,21,49,.72) !important;
+    border-color:rgba(160,216,255,.24) !important;
+  }
+  .simpleMissionCard.isNext .simpleMissionState{
+    color:#3b2a00 !important;
+    background:linear-gradient(180deg,#fff176,#ffd027) !important;
+    border-color:rgba(255,255,255,.5) !important;
+  }
+  .simpleMissionCard.isDone .simpleMissionState{
+    color:#d9ffe8 !important;
+    background:rgba(20,101,67,.78) !important;
+  }
+  .simpleMissionCard > div:nth-child(2){
+    grid-area:text !important;
+    min-width:0 !important;
+    padding-right:82px !important;
+  }
+  .simpleMissionCard h4{
+    font-size:1.12rem !important;
+    line-height:1.1 !important;
+    margin:0 0 4px !important;
+  }
+  .simpleMissionCard p{
+    font-size:.88rem !important;
+    line-height:1.25 !important;
+    -webkit-line-clamp:2 !important;
+  }
+  .simpleMissionFooter{
+    grid-area:action !important;
+    display:flex !important;
+    justify-content:space-between !important;
+    align-items:center !important;
+    gap:10px !important;
+  }
+  .simpleMissionXp{
+    font-size:.9rem !important;
+  }
+  .simpleMissionCard .btn{
+    width:auto !important;
+    min-width:92px !important;
+    min-height:44px !important;
+    padding:10px 16px !important;
+    border-radius:16px !important;
+    font-size:.92rem !important;
+  }
+}
+
+/* Ventana emergente de explicación */
+.learningModal{
+  position:fixed;
+  inset:0;
+  z-index:200;
+  display:none;
+  place-items:center;
+  padding:18px;
+}
+.learningModal.show{
+  display:grid;
+}
+body.modalOpen{
+  overflow:hidden;
+}
+.learningModalBackdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(2,8,20,.72);
+  backdrop-filter:blur(12px) saturate(1.15);
+}
+.learningModalCard{
+  position:relative;
+  width:min(720px,calc(100vw - 28px));
+  max-height:min(86svh,760px);
+  overflow:auto;
+  overscroll-behavior:contain;
+  padding:22px;
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(47,227,255,.14), transparent 32%),
+    linear-gradient(145deg,rgba(255,255,255,.98),rgba(239,250,255,.95));
+  border:1px solid rgba(139,194,255,.38);
+  box-shadow:0 30px 80px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.9);
+  color:#102246;
+  animation:modalPop .2s cubic-bezier(.2,.8,.2,1);
+}
+@keyframes modalPop{
+  from{opacity:0;transform:translateY(12px) scale(.97)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+.learningModalClose{
+  position:sticky;
+  top:0;
+  margin-left:auto;
+  margin-bottom:8px;
+  width:44px;
+  height:44px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(180deg,#122b63,#0b1a3d);
+  color:#fff;
+  font-size:1.5rem;
+  font-weight:1000;
+  box-shadow:0 10px 24px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.12);
+  z-index:2;
+}
+.learningModalBody{
+  display:grid;
+  gap:12px;
+}
+.learningModalBody > b,
+.learningModalBody .modalTitle{
+  color:#071a3d;
+  font-size:1.3rem;
+  line-height:1.14;
+}
+.learningModalBody p{
+  margin:0;
+  color:#345075;
+  line-height:1.42;
+}
+.learningModalBody .consequencePanel,
+.learningModalBody .feedbackCoachGrid{
+  margin-top:0;
+}
+.learningModalBody .consequencePanel{
+  background:rgba(255,255,255,.68);
+  border-color:rgba(59,130,246,.16);
+}
+.learningModalBody .consequencePanel h4,
+.learningModalBody .feedbackMiniCard b,
+.learningModalBody .consequenceCard b{
+  color:#102246;
+}
+.learningModalBody .feedbackMiniCard small,
+.learningModalBody .consequenceCard small{
+  color:#3b5578;
+}
+.learningModalBody .feedbackMiniCard,
+.learningModalBody .consequenceCard{
+  background:linear-gradient(180deg,#ffffff,#eef7ff);
+  border-color:rgba(59,130,246,.16);
+}
+.learningModalBody .missionActionRow{
+  margin-top:2px;
+}
+
+@media (max-width:760px){
+  .learningModal{
+    align-items:end;
+    padding:10px 10px calc(84px + env(safe-area-inset-bottom));
+  }
+  .learningModalCard{
+    width:100%;
+    max-width:410px;
+    max-height:78svh;
+    padding:16px;
+    border-radius:28px;
+  }
+  .learningModalClose{
+    width:42px;
+    height:42px;
+    border-radius:15px;
+  }
+  .learningModalBody > b,
+  .learningModalBody .modalTitle{
+    font-size:1.12rem;
+  }
+  .learningModalBody .consequenceGrid,
+  .learningModalBody .feedbackCoachGrid{
+    grid-template-columns:1fr !important;
+  }
+  .learningModalBody .consequenceCard{
+    grid-template-columns:84px 1fr !important;
+    grid-template-areas:"scene title" "scene text";
+    align-items:center;
+  }
+  .learningModalBody .consequenceScene{
+    grid-area:scene;
+    height:72px !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -7148,6 +7451,14 @@ body[data-route="care"] #genericMission.active .choicePanel{
 <!-- Elementos flotantes globales:
      marca institucional, avisos y navegación rápida -->
 <div class="toast" id="toast"></div>
+<div class="learningModal" id="learningModal" aria-hidden="true">
+  <div class="learningModalBackdrop" onclick="closeLearningModal()"></div>
+  <div class="learningModalCard" role="dialog" aria-modal="true" aria-labelledby="learningModalTitle">
+    <button class="learningModalClose" type="button" aria-label="Cerrar explicación" onclick="closeLearningModal()">×</button>
+    <div class="learningModalBody" id="learningModalBody"></div>
+  </div>
+</div>
+
 <div class="dockNav" id="dockNav">
   <button class="dockBtn" data-dock="home" onclick="showScreen('home')"><span>🏠</span><span class="dockLabel">Inicio</span></button>
   <button class="dockBtn" data-dock="map" onclick="showScreen('map')"><span>🛡️</span><span class="dockLabel">Cyber</span></button>
@@ -8127,8 +8438,29 @@ function previewAudio(type='ui'){
   }
   beep(type === 'ok' ? 'ok' : type === 'bad' ? 'bad' : 'win');
 }
-function showScreen(id){
-  const changed = currentScreen !== id;
+  function openLearningModal(html, kind='info'){
+    const modal = document.getElementById('learningModal');
+    const body = document.getElementById('learningModalBody');
+    if(!modal || !body) return;
+    body.innerHTML = html;
+    modal.className = `learningModal show ${kind}`;
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modalOpen');
+    window.setTimeout(() => modal.querySelector('.learningModalClose')?.focus(), 30);
+  }
+  function closeLearningModal(){
+    const modal = document.getElementById('learningModal');
+    if(!modal) return;
+    modal.className = 'learningModal';
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modalOpen');
+  }
+  window.addEventListener('keydown', event => {
+    if(event.key === 'Escape') closeLearningModal();
+  });
+  function showScreen(id){
+    closeLearningModal();
+    const changed = currentScreen !== id;
   currentScreen = id;
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -8448,6 +8780,11 @@ function answerPhishing(selectedIsPhishing){
   if(phishingSolved) return;
   const box = document.getElementById('feedbackPhishing');
   const correct = selectedIsPhishing === true;
+  const resetInlineFeedback = () => {
+    if(!box) return;
+    box.className = 'phishingInlineFeedback';
+    box.innerHTML = `<div class="feedbackLead"><b>Elegí una opción para ver la explicación.</b></div>`;
+  };
   if(correct){
     phishingSolved = true;
     recordCorrect();
@@ -8457,11 +8794,8 @@ function answerPhishing(selectedIsPhishing){
     document.getElementById('phishingDangerBtn')?.classList.add('successChoice');
     document.getElementById('phishingDangerBtn').innerHTML = `<span class="bigChoiceTop"><span class="choiceBadge">A</span><span class="choiceText">ES PHISHING</span></span><small>Respuesta correcta</small>`;
     document.getElementById('phishingSafeBtn').innerHTML = `<span class="bigChoiceTop"><span class="choiceBadge">B</span><span class="choiceText">ES SEGURO</span></span><small>Esta opción no cuidaba tus datos</small>`;
-    if(box){
-      box.className = 'phishingInlineFeedback ok';
-      box.innerHTML = `<div class="feedbackLead"><b>Muy bien: era phishing.</b></div><p>El correo mete apuro, trae un enlace raro y pide datos personales. La opción segura es no tocar el link ni compartir datos.</p><div class="missionActionRow"><button class="btn yellow" onclick="launchNextMission('digital')">Siguiente juego</button><button class="btn" onclick="showScreen('map')">Volver</button></div>`;
-      box.scrollIntoView({behavior:'smooth', block:'nearest'});
-    }
+    resetInlineFeedback();
+    openLearningModal(`<div class="modalTitle" id="learningModalTitle">Muy bien: era phishing.</div><p>El correo mete apuro, trae un enlace raro y pide datos personales. La opción segura es no tocar el link ni compartir datos.</p><div class="consequencePanel ok"><h4>Qué evitaste con esta decisión</h4><div class="consequenceGrid"><div class="consequenceCard"><div class="consequenceScene"><span>✅</span><span>🔗</span></div><b>No tocaste el enlace</b><small>Evitaste entrar a una página falsa que podía robar datos.</small></div><div class="consequenceCard"><div class="consequenceScene"><span>🛡️</span><span>🔐</span></div><b>Cuidaste tu cuenta</b><small>No compartiste contraseña, códigos ni datos personales.</small></div></div></div><div class="missionActionRow"><button class="btn yellow" onclick="closeLearningModal(); launchNextMission('digital')">Siguiente juego</button><button class="btn" onclick="closeLearningModal(); showScreen('map')">Volver</button></div>`, 'ok');
     notify(first ? '¡Ganaste +20 XP y +50 monedas!' : 'Esta misión ya fue completada.');
   }else{
     recordWrong();
@@ -8469,11 +8803,8 @@ function answerPhishing(selectedIsPhishing){
     loseLife();
     document.getElementById('phishingSafeBtn')?.classList.add('errorChoice');
     document.getElementById('phishingSafeBtn').innerHTML = `<span class="bigChoiceTop"><span class="choiceBadge">B</span><span class="choiceText">ES SEGURO</span></span><small>Esta opción no cuidaba tus datos</small>`;
-    if(box){
-      box.className = 'phishingInlineFeedback retry';
-      box.innerHTML = `<div class="feedbackLead"><b>Esa opción no cuidaba lo suficiente.</b></div><p>Volvé a mirar: el mensaje usa urgencia, un link raro y pide datos sensibles. Todavía no marco la correcta; elegí con calma.</p>`;
-      box.scrollIntoView({behavior:'smooth', block:'nearest'});
-    }
+    resetInlineFeedback();
+    openLearningModal(`<div class="modalTitle" id="learningModalTitle">Esa opción no cuidaba lo suficiente.</div><p>Volvé a mirar: el mensaje usa urgencia, un link raro y pide datos sensibles. Todavía no marco la correcta; elegí con calma.</p><div class="consequencePanel retry"><h4>Qué puede pasar si seguís esa opción</h4><div class="consequenceGrid"><div class="consequenceCard"><div class="consequenceScene"><span>⚠️</span><span>🔐</span></div><b>Alguien puede entrar</b><small>Podrían pedir tu contraseña o códigos para usar tu cuenta.</small></div><div class="consequenceCard"><div class="consequenceScene"><span>🚫</span><span>📩</span></div><b>Hay señales raras</b><small>El apuro y el enlace extraño son pistas para frenar.</small></div></div></div><div class="missionActionRow"><button class="btn yellow" onclick="closeLearningModal()">Intentar otra vez</button></div>`, 'retry');
   }
 }
 function completePrivacy(){
@@ -9847,6 +10178,12 @@ function answerDynamic(index){
   const inlineFeedback = document.getElementById('dynInlineFeedback');
   const buttons = [...document.querySelectorAll('#dynOptions .bigChoice')];
   const selectedButton = buttons[index];
+  const returnScreen = currentTrack === 'care' ? 'antiTraffickingHub' : 'map';
+  const hideInlineFeedback = () => {
+    if(!inlineFeedback) return;
+    inlineFeedback.className = 'inlineFeedback';
+    inlineFeedback.innerHTML = '';
+  };
   if(correct){
     dynamicSolved = true;
     recordCorrect();
@@ -9855,12 +10192,9 @@ function answerDynamic(index){
     buttons.forEach(btn => btn.disabled = true);
     selectedButton?.classList.add('successChoice');
     if(selectedButton) selectedButton.innerHTML = buildChoiceMarkup(currentMission.shuffledOptions[index], index, currentTrack, 'Muy bien: esta respuesta cuidaba más.');
-    box.innerHTML = `<div class="feedbackLead"><div style="font-size:1.5rem;font-weight:1000;color:#3dd4ff">APRENDIZAJE</div><b>Muy bien: elegiste la opción más segura.</b></div><p><b>¿Por qué estaba bien?</b> ${escapeHTML(currentMission.good)}</p>${buildConsequenceHTML('ok', currentMission, currentTrack)}${buildFeedbackCoachHTML('ok', currentMission, currentTrack)}<div class="missionActionRow"><button class="btn yellow" onclick="launchNextMission(currentMission.key && missionMeta[currentMission.key].track==='care' ? 'care' : 'digital')">Siguiente juego</button><button class="btn" onclick="showScreen(missionMeta[currentMission.key].track==='care' ? 'antiTraffickingHub' : 'map')">Volver</button></div>`;
-    if(inlineFeedback){
-      inlineFeedback.className = 'inlineFeedback show ok';
-      inlineFeedback.innerHTML = `<b>Bien.</b> ${escapeHTML(currentMission.good)}${buildConsequenceHTML('ok', currentMission, currentTrack)}${buildFeedbackCoachHTML('ok', currentMission, currentTrack)}<div class="missionActionRow"><button class="btn yellow" onclick="launchNextMission(currentMission.key && missionMeta[currentMission.key].track==='care' ? 'care' : 'digital')">Siguiente juego</button><button class="btn" onclick="showScreen(missionMeta[currentMission.key].track==='care' ? 'antiTraffickingHub' : 'map')">Volver</button></div>`;
-      inlineFeedback.scrollIntoView({behavior:'smooth', block:'nearest'});
-    }
+    box.innerHTML = `<div class="feedbackLead"><div style="font-size:1.5rem;font-weight:1000;color:#3dd4ff">APRENDIZAJE</div><b>Muy bien: elegiste la opción más segura.</b></div><p>La explicación completa se abrió en una ventana. Podés cerrarla y seguir jugando.</p>`;
+    hideInlineFeedback();
+    openLearningModal(`<div class="modalTitle" id="learningModalTitle">Bien. Elegiste cuidar.</div><p><b>¿Por qué estaba bien?</b> ${escapeHTML(currentMission.good)}</p>${buildConsequenceHTML('ok', currentMission, currentTrack)}<div class="missionActionRow"><button class="btn yellow" onclick="closeLearningModal(); launchNextMission('${currentTrack}')">Siguiente juego</button><button class="btn" onclick="closeLearningModal(); showScreen('${returnScreen}')">Volver</button></div>`, 'ok');
     notify(first ? `¡Ganaste +${currentMission.xp} XP y +${currentMission.coins} monedas!` : 'Esta misión ya fue completada.');
   }else{
     recordWrong();
@@ -9871,12 +10205,9 @@ function answerDynamic(index){
       selectedButton.classList.add('errorChoice');
       selectedButton.innerHTML = buildChoiceMarkup(currentMission.shuffledOptions[index], index, currentTrack, 'Esta opción no cuidaba lo suficiente.');
     }
-    box.innerHTML = `<div class="feedbackLead"><div style="font-size:1.5rem;font-weight:1000;color:#3dd4ff">PISTA</div><b>Esa opción no cuidaba lo suficiente.</b></div><p>${escapeHTML(currentMission.bad)}</p>${buildConsequenceHTML('retry', currentMission, currentTrack)}${buildFeedbackCoachHTML('retry', currentMission, currentTrack)}`;
-    if(inlineFeedback){
-      inlineFeedback.className = 'inlineFeedback show retry';
-      inlineFeedback.innerHTML = `<b>Esa opción no cuidaba lo suficiente.</b>${buildConsequenceHTML('retry', currentMission, currentTrack)}${buildFeedbackCoachHTML('retry', currentMission, currentTrack)}`;
-      inlineFeedback.scrollIntoView({behavior:'smooth', block:'nearest'});
-    }
+    box.innerHTML = `<div class="feedbackLead"><div style="font-size:1.5rem;font-weight:1000;color:#3dd4ff">PISTA</div><b>Esa opción no cuidaba lo suficiente.</b></div><p>La pista se abrió en una ventana. Cerrala para intentar otra respuesta.</p>`;
+    hideInlineFeedback();
+    openLearningModal(`<div class="modalTitle" id="learningModalTitle">Esa opción no cuidaba lo suficiente.</div><p>${escapeHTML(currentMission.bad)}</p>${buildConsequenceHTML('retry', currentMission, currentTrack)}<div class="missionActionRow"><button class="btn yellow" onclick="closeLearningModal()">Intentar otra vez</button></div>`, 'retry');
     // La pista ya queda visible en la pantalla; evitar toast flotante que tapa la explicación.
   }
 }
